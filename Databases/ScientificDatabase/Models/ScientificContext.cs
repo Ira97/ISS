@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using Microsoft.EntityFrameworkCore;
+using ScientificDatabase.Models.Hierarchy;
 
 namespace ScientificDatabase.Models
 {
@@ -16,7 +17,11 @@ namespace ScientificDatabase.Models
 
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<UserRole> UserRole { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; } 
+        public virtual DbSet<Area> Area { set; get; }
+        public virtual DbSet<Section> Section { set; get; }
+        public virtual DbSet<AreaSection> AreaSection { set; get; }
+
         /// <summary>
         /// Страка подключения используемая при миграции базы данных
         /// </summary>
