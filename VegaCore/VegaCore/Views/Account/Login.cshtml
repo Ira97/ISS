@@ -1,4 +1,4 @@
-﻿@model Vega.Models.LoginViewModel
+﻿@model             Models.ViewModels.LoginViewModel
 @{
     ViewBag.Title = "Вход в систему";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +12,6 @@
         <div class="form-group">
             <label>Логин</label>
             @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Логин" })
-            <small id="emailHelp" class="form-text text-muted">Используется логин, как при входе в компьютер</small>
         </div>
         <div class="form-group">
             <label>Пароль</label>
@@ -22,6 +21,8 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
         </div>
+
         <button type="submit" class="btn btn-primary">Войти</button>
+        <button type="button" class="btn btn-light" onclick="location.href='@Url.Action("Register", "Account")'">Зарегистрироваться</button>
     }
 </div>

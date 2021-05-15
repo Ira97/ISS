@@ -1,4 +1,4 @@
-namespace Vega.Models
+namespace Models.ViewModels
 {
     public class ErrorViewModel
     {

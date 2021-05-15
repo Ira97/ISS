@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Models;
+using Models.User;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApiCore.Controllers
@@ -32,15 +32,26 @@ namespace WebApiCore.Controllers
         {
             _userService = userService;
         }
-        
+
         /// <summary>
         /// Получение пользователя
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public User GetUserAsync([FromQuery] string login)
+        [HttpPost("register")]
+        public async System.Threading.Tasks.Task RegisterUserAsync([FromBody] RegisterUserDto registerUser)
         {
-            return _userService.GetUserAsync(login);
+            await _userService.RegisterUserAsync(registerUser);
+        }
+
+
+        /// <summary>
+        /// Получение пользователя
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("validate")]
+        public User ValidateUserAsync([FromBody] ValidateUserDto validateUser)
+        {
+            return _userService.ValidateUserAsync(validateUser);
         }
     }
 }

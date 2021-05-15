@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Models.Security;
-using Vega.Models;
+using Models.ViewModels;
 using WebApiHandlers.Interfaces;
 
 namespace Vega.Controllers
@@ -15,14 +15,14 @@ namespace Vega.Controllers
     /// </summary>
     public class AccountController : Controller
     {
-        private readonly IAccessTokenProvider _accessTokenProvider;
+        private readonly IUserProvider _accessTokenProvider;
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="AccountController"/>
         /// </summary>
         /// <param name="accessTokenProvider"></param>
         /// <param name="httpClientProvider"></param>
-        public AccountController(IAccessTokenProvider accessTokenProvider, IWebHttpClientProvider httpClientProvider)
+        public AccountController(IUserProvider accessTokenProvider, IWebHttpClientProvider httpClientProvider)
         {
             _accessTokenProvider = accessTokenProvider;
         }
@@ -71,6 +71,37 @@ namespace Vega.Controllers
             {
                 return Redirect(returnUrl);
             }
+            return RedirectToAction("Index", "Home");
+        }
+
+        /// <summary>
+        /// Вход
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Register(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            var model = new RegisterViewModel();
+            return View(model);
+        }
+
+        /// <summary>
+        /// Вход
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            await _accessTokenProvider.RegisterUserAsync(model);
             return RedirectToAction("Index", "Home");
         }
 

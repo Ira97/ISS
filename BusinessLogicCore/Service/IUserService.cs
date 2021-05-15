@@ -1,9 +1,11 @@
-﻿using Models;
+﻿using Models.User;
+using System.Threading.Tasks;
 
 namespace BusinessLogicCore.Service
 {
     public interface IUserService
     {
-        User GetUserAsync(string login);
+        User ValidateUserAsync(ValidateUserDto validateUser);
+        Task RegisterUserAsync(RegisterUserDto registerUser);
     }
 }

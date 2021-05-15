@@ -37,7 +37,7 @@ namespace Vega
             services.AddScoped<IWebHttpClientProvider, WebHttpClientProvider>();
            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IAccessTokenProvider, AccessTokenProvider>();
+            services.AddScoped<IUserProvider, UserProvider>();
            
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
             services.AddMemoryCache();
