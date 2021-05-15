@@ -3,3 +3,23 @@
 ################################################################################
 
 /.idea/.idea.ISS/.idea
+/.vs
+/BusinessLogicCore/bin/Debug/netstandard2.0
+/BusinessLogicCore/obj
+/Databases/FusionDatabase/obj
+/Databases/ScientificDatabase/bin/Debug/netstandard2.0
+/Databases/ScientificDatabase/obj
+/Middlewares/bin/Debug/netstandard2.0
+/Middlewares/obj
+/Models/bin/Debug/netstandard2.0
+/Models/obj
+/packages
+/VegaCore/.idea/.idea.VegaCore/.idea/.gitignore
+/VegaCore/.idea/.idea.VegaCore/.idea
+/VegaCore/VegaCore/bin/Debug/netcoreapp3.1
+/VegaCore/VegaCore/obj
+/WebApi/.idea/.idea.WebApiCore/.idea
+/WebApi/WebApiCore/bin/Debug/netcoreapp3.1
+/WebApi/WebApiCore/obj
+/WebApiHandlers/bin/Debug/netstandard2.0
+/WebApiHandlers/obj

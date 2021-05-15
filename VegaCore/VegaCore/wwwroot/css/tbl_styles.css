@@ -1,0 +1,194 @@
+﻿#wrapper {
+    width: 1200px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    padding: 5px;
+}
+
+
+table {
+    border-spacing: 7px;
+    text-align: center;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+    padding: 10px;
+}
+
+
+td {
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+}
+
+    td:nth-of-type(2) {
+        width: 180px;
+        height: 29px;
+    }
+
+tr:nth-of-type(1) > th {
+    background-color: white;
+}
+
+tr > th.unit {
+    width: 122px;
+}
+
+tr > th.name {
+    width: 122px;
+}
+
+tr > th.numb {
+    width: 100px;
+}
+
+th {
+    text-align: center;
+}
+
+a {
+    color: #000;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+#submit2 {
+    width: 47px;
+}
+
+table.butt {
+    margin-bottom: 10px;
+}
+
+#sum {
+    color: #b97a04;
+    margin-left: 10px;
+}
+
+table.filtrtbl {
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 100px;
+}
+
+tr.filters {
+    opacity: 1;
+    background-color: white;
+    cursor: auto;
+}
+
+td.reittd {
+    width: auto;
+    height: auto;
+}
+
+#namef {
+    width: 145px;
+    margin-left: 25px;
+}
+
+#reitf {
+    height: 26px;
+}
+
+#numf {
+    width: 115px;
+}
+
+#datenew1 {
+    width: 120px;
+    height: 26px;
+    display: none;
+}
+
+#datenew2 {
+    width: 108px;
+    height: 26px;
+}
+
+#dateclose {
+    width: 108px;
+    height: 26px;
+}
+
+#unitf {
+    height: 26px;
+}
+
+#sourcef {
+    height: 26px;
+}
+
+#digits {
+    width: 85px;
+    height: 26px;
+}
+
+#typef {
+    width: 75px;
+    height: 26px;
+}
+
+tr.filters:hover {
+    opacity: 1;
+    background-color: white;
+    cursor: auto;
+}
+
+#filters {
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 1058px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#datefilter {
+    width: 680px;
+    margin: 0 auto;
+}
+
+#nalid {
+    margin-left: 25%;
+}
+
+.table > thead > tr > th {
+    padding-right: 15px;
+    vertical-align: middle;
+    font-size: 10px;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.c_0_c td, .c_0_c th {
+    background-position: calc(100% - 5px) center !important;
+}
+
+.ui-dialog {
+    margin-top: 60px;
+}
+
+.sort-button {
+    position: absolute;
+    right: 0;
+    padding-right: 5px;
+    border: none;
+    background: none;
+}
+
+    .sort-button.active.focus, .sort-button.active:focus, .sort-button.focus, .sort-button.focus:active, .sort-button:active:focus, .sort-button:focus {
+        outline: none;
+        outline-offset: -2px;
+    }
+
+.position-relative {
+    position: relative;
+}

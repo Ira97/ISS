@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>\\10.1.0.90\d$\wwwroot\WebApiYandex</_PublishTargetUrl>
+    <History>True|2021-05-06T01:54:30.5309812Z;True|2021-05-06T08:54:52.2193811+10:00;True|2021-04-30T17:57:33.8052530+10:00;True|2021-04-30T16:08:48.4641644+10:00;True|2021-04-28T17:23:30.8338225+10:00;True|2021-04-16T13:01:29.9776900+10:00;True|2021-03-16T11:00:12.3244742+10:00;</History>
+  </PropertyGroup>
+</Project>

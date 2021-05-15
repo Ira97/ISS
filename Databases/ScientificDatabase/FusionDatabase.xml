@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FusionDatabase</name>
+    </assembly>
+    <members>
+        <member name="M:FusionDatabase.Models.FusionContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Страка подключения используемая при миграции базы данных
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="T:FusionDatabase.Models.NpsSms">
+            <summary>
+            Отзыв
+            </summary>
+        </member>
+        <member name="P:FusionDatabase.Models.NpsSms.CardCode">
+            <summary>
+            Код карты пользователя
+            </summary>
+        </member>
+        <member name="P:FusionDatabase.Models.NpsSms.Rating">
+            <summary>
+            Оценка пользователя
+            </summary>
+        </member>
+        <member name="P:FusionDatabase.Models.NpsSms.Comment">
+            <summary>
+            Комментарий пользователя
+            </summary>
+        </member>
+        <member name="P:FusionDatabase.Models.NpsSms.Contact">
+            <summary>
+            Нужна ли обратная связь
+            </summary>
+        </member>
+        <member name="P:FusionDatabase.Models.NpsSms.CreateDate">
+            <summary>
+            Дата создания
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,14 @@
+https://www.entityframeworktutorial.net/efcore/create-model-for-existing-database-in-ef-core.aspx - описание по работе с .net core миграцией
+
+Scaffold-DbContext "Data Source=10.1.0.64;Initial Catalog=CRM7U;User Id=VEGA;Password=eWsaIFUIUxN6Y2h09ZdZ;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models - создание моделей на основе существующей Ѕƒ
+dotnet ef migrations add - создание миграции
+dotnet ef migrations add Initial --project "C:\Users\User\Desktop\Project\Databases\ScientificDatabase" --startup-project "C:\Users\User\Desktop\Project\WebApi\WebApiCore" --context ScientificContext пример создани€ миграции дл€ netstandart
+dotnet ef database update - обновление базы данные
+Data Source=10.1.0.64;Initial Catalog=Fusion;User Id=VEGA;Password=eWsaIFUIUxN6Y2h09ZdZ; - пример строки подключени€
+
+
+—н€тие дампа дл€ анализа утечек пам€ти https://devblogs.microsoft.com/dotnet/collecting-and-analyzing-memory-dumps/
+dotnet tool install --global dotnet-gcdump
+dotnet gcdump collect -p <target-process-PID>
+
+dotnet ef dbcontext scaffold "Server=10.1.0.24;Database=FastOperator;User Id=sa;Password=fu4NgPEY;" Microsoft.EntityFrameworkCore.SqlServer -o Model

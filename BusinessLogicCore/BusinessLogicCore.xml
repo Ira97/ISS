@@ -1,0 +1,1854 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BusinessLogicCore</name>
+    </assembly>
+    <members>
+        <member name="T:BusinessLogicCore.Controllers.AdProvider">
+            <summary>
+            Информация по пользователя Active Directory
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.AdProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Информация по пользователя Active Directory
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.AdProvider.ValidateCredentials(System.String,System.String)">
+            <summary>
+            Проверка данных пользователя Active Directory
+            </summary>
+            <param name="sUserName"></param>
+            <param name="sPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.AdProvider.FindByIdentity(System.String)">
+            <summary>
+            Получение пользователя Active Directory по логину
+            </summary>
+            <param name="sUserName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.BankInfoProvider">
+            <summary>
+            Информация по банковским операциям
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.BankInfoProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Информация по банковским операциям
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.BankInfoProvider.GetPayment(System.String)">
+            <summary>
+            Информация о платеже
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.Crm.AddressProvider">
+            <summary>
+            Получение информации по адресам
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.AddressProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.Query.IQueryProvider,BusinessLogicCore.Interfaces.ICrmQueryProvider,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Получение информации по адресам
+            </summary>
+            <param name="appSettings"></param>
+            <param name="queryProvider"></param>
+            <param name="crmQueryProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.AddressProvider.CheckStreets(System.String,Models.Crm.Streets,System.Collections.Generic.List{Models.Crm.City})">
+            <summary>
+            Формирование списка улиц для сайта
+            </summary>
+            <param name="cityId"></param>
+            <param name="streets"></param>
+            <param name="cityList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.AddressProvider.GetCityKeyValuePair">
+            <summary>
+            Получаем структуру спривязой городов к основным городам
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.AddressProvider.GetStreetListAsync(System.String)">
+            <summary>
+            Получение списка улиц
+            </summary>
+            <param name="cityId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.AddressProvider.GetCityListAsync">
+            <summary>
+            Получение списка городов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.AddressProvider.GetMainCityListAsync">
+            <summary>
+            Получение списка основных городов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.Crm.CardProvider">
+            <summary>
+            Операции с бонусными картами
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CardProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},CRM7UDatabase.Repositories.CardCardsRepository,CRM7UDatabase.Repositories.CardRegistersRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Операции с бонусными картами
+            </summary>
+            <param name="appSettings"></param>
+            <param name="cardCardsRepository"></param>
+            <param name="cardRegistersRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CardProvider.CheckCard(System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            Проверка возможности активации карты
+            </summary>
+            <param name="cardCode"></param>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CardProvider.ActivateCard(Models.Rk7.Order.GuestInfo)">
+            <summary>
+            Активация карты
+            </summary>
+            <param name="guestInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.Crm.CrmProvider">
+            <summary>
+            Работа с CRM
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CrmProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.ISmsProvider,BusinessLogicCore.Interfaces.Crm.ICardProvider,BusinessLogicCore.Interfaces.Crm.IHolderProvider,BusinessLogicCore.Interfaces.Query.IQueryProvider,BusinessLogicCore.Interfaces.Query.IXmlProvider,BusinessLogicCore.Interfaces.ICrmQueryProvider,BusinessLogicCore.Interfaces.Rk7.IRestaurantProvider,CRM7UDatabase.Repositories.CardStreetsRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Работа с CRM
+            </summary>
+            <param name="appSettings"></param>
+            <param name="smsProvider"></param>
+            <param name="cardProvider"></param>
+            <param name="holderProvider"></param>
+            <param name="queryProvider"></param>
+            <param name="xmlProvider"></param>
+            <param name="crmQueryProvider"></param>
+            <param name="restaurantProvider"></param>
+            <param name="cardStreetsRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CrmProvider.ActivateCardAsync(System.String,System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            Активация карты
+            </summary>
+            <param name="phone"></param>
+            <param name="cardCode"></param>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CrmProvider.GetBonusesAsync(System.String)">
+            <summary>
+            Получение информации о количестве бонусов
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CrmProvider.GetTransactions(System.String)">
+            <summary>
+             Получить транзакции пользователя
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CrmProvider.Activate(System.String)">
+            <summary>
+            Активация
+            </summary>
+            <param name="authCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CrmProvider.GetGuestsAsync(Models.Rk7.Order.Order,System.String)">
+            <summary>
+            Получение информации по гостю
+            </summary>
+            <param name="orderInfo"></param>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CrmProvider.EditHolderAsync(Models.Crm.Holder.Holder)">
+            <summary>
+            Редактирование владельца карты
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.CrmProvider.EditHolderAsync(Models.Rk7.Order.GuestInfo)">
+            <summary>
+            Редактирование владельца карты
+            </summary>
+            <param name="guestInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.Crm.HolderProvider">
+            <summary>
+            Операции по владельцу карт
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.HolderProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Операции по владельцу карт
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.HolderProvider.EditHolder(Models.Crm.Holder.Holder)">
+            <summary>
+            Редактирование пользователя
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.HolderProvider.AddHolders(Models.Crm.Holder.Holder)">
+            <summary>
+            Добавление пользователя
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Crm.HolderProvider.GetHolder(System.String,System.String,System.Collections.Generic.List{Models.Crm.Holder.AddressInfo},System.String,System.DateTime)">
+            <summary>
+            Создание нового пользователя
+            </summary>
+            <param name="firstName"></param>
+            <param name="lastName"></param>
+            <param name="addressInfo"></param>
+            <param name="phone"></param>
+            <param name="birthDay"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.CustomUserStore">
+            <summary>
+            Валидация данных пользователя
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.CustomUserStore.#ctor(BusinessLogicCore.Interfaces.IAdProvider,Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Валидация данных пользователя
+            </summary>
+            <param name="adProvider"></param>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.CustomUserStore.TryConnectForAd(System.String,System.String)">
+            <summary>
+            Валидация логина пароля ActiveDirectory
+            </summary>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.CustomUserStore.TryConnectForSite(System.String,System.String)">
+            <summary>
+            Валидация логина пароля сайта
+            </summary>
+            <param name="phone"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.CustomUserStore.GetRoleClaims(System.DirectoryServices.AccountManagement.UserPrincipal)">
+            <summary>
+            Добавление ролей Active Directory
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.DeliveryTime.BindingZoneProvider">
+            <summary>
+            Информация о связках зон
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.BindingZoneProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain},FusionDatabase.Repositories.BindingZonesRepository)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+            <param name="bindingZonesRepository"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.BindingZoneProvider.GetBindingZoneList">
+            <summary>
+            Получение списка связанных зон
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.DeliveryTime.DeliveryTimeProvider">
+            <summary>
+            Информация по доступному времени доставки и вывоза
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.DeliveryTimeProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.IRestLoadProvider,FusionDatabase.Repositories.BindingZonesRepository,FusionDatabase.Repositories.DeliveryMonitorRepository,DeliveryDatabase.Repositories.DlvZonesRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Информация по доступному времени доставки и вывоза
+            </summary>
+            <param name="appSettings"></param>
+            <param name="restLoadProvider"></param>
+            <param name="bindingZonesRepository"></param>
+            <param name="deliveryMonitorRepository"></param>
+            <param name="dlvZonesRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.DeliveryTimeProvider.GetDeliveryAtTime(System.String,System.String,System.String)">
+            <summary>
+            Получение списка доступных часов на доставку ко времени
+            </summary>
+            <param name="townName"></param>
+            <param name="streetName"></param>
+            <param name="houseNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.DeliveryTimeProvider.GetPickUpAtTime(System.Int32)">
+            <summary>
+            Получение списка доступных часов на вынос ко времени
+            </summary>
+            <param name="restaurantId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.DeliveryTimeProvider.GetPickUpSoonTime(System.Int32)">
+            <summary>
+            Получение ближайшего доступного времени на вынос 
+            </summary>
+            <param name="restaurantId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.DeliveryTimeProvider.GetDeliverySoonTime(System.String,System.String,System.String)">
+            <summary>
+            Получение ближайшего доступного времени на доставку 
+            </summary>
+            <param name="townName"></param>
+            <param name="streetName"></param>
+            <param name="houseNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.DeliveryTimeProvider.GetTimeList(System.Int32,System.Int32)">
+            <summary>
+            Получение списка доступных часов
+            </summary>
+            <param name="time"></param>
+            <param name="start"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.DeliveryTime.RestaurantMaxLoadProvider">
+            <summary>
+            Максимальная нагрузка на ресторан
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.RestaurantMaxLoadProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},FusionDatabase.Repositories.RestaurantMaxLoadRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="restaurantMaxLoadRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.RestaurantMaxLoadProvider.GetRestaurantMaxLoadList">
+            <summary>
+            Получение списка максимальной нагрузки на рестораны
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.DeliveryTime.RestLoadProvider">
+            <summary>
+            Нагрузка на ресторан (Загруженность ресторана)
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.RestLoadProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},FusionDatabase.Repositories.RestaurantMaxLoadRepository,DeliveryDatabase.Repositories.DlvOrdersRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Нагрузка на ресторан (Загруженность ресторана)
+            </summary>
+            <param name="appSettings"></param>
+            <param name="restaurantMaxLoadRepository"></param>
+            <param name="dlvOrdersRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.RestLoadProvider.GetRestaurantLoad(System.Nullable{System.Int64},System.Int32)">
+            <summary>
+            Нагрузка на ресторан
+            </summary>
+            <param name="restaurantId"></param>
+            <param name="daysToAdd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.DeliveryTime.RestLoadProvider.GetRedStatus(System.Collections.Generic.List{Models.DeliveryTime.RestaurantLoad})">
+            <summary>
+            Получение информации о загруженных часах
+            </summary>
+            <param name="restaurantLoadList"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.FeedBackProvider">
+            <summary>
+            Провайдер для работы с отзывами
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.IMailProvider,BusinessLogicCore.Interfaces.Rk7.IRestaurantProvider,FusionDatabase.Repositories.FeedBackRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Инициализация экземпляра FeedBackProvider
+            </summary>
+            <param name="appSettings"></param>
+            <param name="mailProvider"></param>
+            <param name="restaurantProvider"></param>
+            <param name="feedBackRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.CreateFeedBack(FusionDatabase.Models.FeedBack)">
+            <summary>
+            Создание отзыва
+            </summary>
+            <param name="feedBack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.EditFeedBack(FusionDatabase.Models.FeedBack)">
+            <summary>
+            Редактирование отзыва
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.DeleteFeedBack(System.Int32)">
+            <summary>
+            Удаление отзыва
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.SearchFeedBackAsync(System.DateTime,System.DateTime,System.String,System.String)">
+            <summary>
+            Поиск отзывов
+            </summary>
+            <param name="startDateTime"></param>
+            <param name="endDateTime"></param>
+            <param name="search"></param>
+            <param name="restaurantListSearch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.GetFeedBackListAsync(System.DateTime,System.DateTime,System.String,System.String)">
+            <summary>
+            Получение списка отзывов без разбивки по страницам
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.GetFeedBackListAsync(System.Int32,System.Int32,System.DateTime,System.DateTime,System.String,System.String)">
+            <summary>
+            Получение списка отзывов с разбивкой по страницам
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.GetFeedBack(System.Int32)">
+            <summary>
+            Получение отзыва
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.FeedBackProvider.PrepareToMail(FusionDatabase.Models.FeedBack)">
+            <summary>
+            Подготовка сообщения с информацией об отзыве
+            </summary>
+            <param name="feedBack"></param>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.LogisticProvider">
+            <summary>
+            Провайдер для работы с данными логистики
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.LogisticProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},FusionDatabase.Repositories.DeliveryMonitorRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Коструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="deliveryMonitorRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.LogisticProvider.GetLogisticList">
+            <summary>
+            Получение списка данных логистики
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.LogisticProvider.AddLogistic(Models.Logistic)">
+            <summary>
+            Добавление данных логистики
+            </summary>
+            <param name="logistic"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.LogisticProvider.UpdateLogistic(Models.Logistic)">
+            <summary>
+            Добавление данных логистики
+            </summary>
+            <param name="logistic"></param>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.MailProvider">
+            <summary>
+            Отправка email сообщения
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.MailProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Отправка email сообщения
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.MailProvider.SendMail(System.String,System.String)">
+            <summary>
+            Отправка email сообщения
+            </summary>
+            <param name="content"></param>
+            <param name="header"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.NpsProvider">
+            <summary>
+            Опрос пользователей
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.NpsProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},FusionDatabase.Repositories.NpsSmsRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Опрос пользователей
+            </summary>
+            <param name="appSettings"></param>
+            <param name="npsSmsRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.NpsProvider.CreateFeedback(FusionDatabase.Models.NpsSms)">
+            <summary>
+            Создать отзыв
+            </summary>
+            <param name="npsSms"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider">
+            <summary>
+            Запросы к Crm
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider.GetStreetsInfo">
+            <summary>
+            Получение списка улиц из Crm
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider.GetCitiesInfo">
+            <summary>
+            Получение списка городов из Crm
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider.SearchHoldersByPhone(System.String)">
+            <summary>
+            Поиск пользователя по номеру телефона
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider.GetHolderInfo(System.String)">
+            <summary>
+            Поиск пользователя по id
+            </summary>
+            <param name="holderId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider.Registration(Models.Crm.Holder.Holder)">
+            <summary>
+            Первый этап регистрации пользователя 
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider.ActivateHolder(Models.Crm.Holder.Holder)">
+            <summary>
+            Второй этап регистрации пользователя
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.CrmQueryProvider.GetTransactionList(System.String,System.Int32)">
+            <summary>
+            Получение списка транзакций пользователя по пользователю
+            </summary>
+            <param name="holderId"></param>
+            <param name="index">Начальное значение индекса списка</param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.QueryProvider.MidServerQueryProvider">
+            <summary>
+            Запросы к Mid серверу
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.MidServerQueryProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.MidServerQueryProvider.GetOrderByGuid(System.String)">
+            <summary>
+            Получение заказа по его Guid
+            </summary>
+            <param name="guid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.MidServerQueryProvider.GetOrderList">
+            <summary>
+            Получение всего списка заказов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.QueryProvider.RefServerQueryProvider">
+            <summary>
+            Запросы к Ref серверу
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.RefServerQueryProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.RefServerQueryProvider.GetCashGroupXmlQuery">
+            <summary>
+            Получение списка кассовых станций
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.RefServerQueryProvider.GetMenuItems">
+            <summary>
+            Получение списка меню
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.RefServerQueryProvider.GetPluginConfiguration">
+            <summary>
+            Получение информации о конфигурации плагинов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.QueryProvider.RefServerQueryProvider.GetRestaurants">
+            <summary>
+            Получение списка ресторанов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.Query.HttpClientProvider">
+            <summary>
+            Работа с серверами UCS по протоколу HTTP, и просто работа с запросами
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.HttpClientProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.HttpClientProvider.HttpPostAsync(System.String,System.String)">
+            <summary>
+            Отправка Post запроса
+            </summary>
+            <param name="content"></param>
+            <param name="host"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.HttpClientProvider.HttpPostWithResponseAsync(System.String,System.String)">
+            <summary>
+            Отправка Post запроса c возвратом результата
+            </summary>
+            <param name="content"></param>
+            <param name="host"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.HttpClientProvider.HttpPostWithResponseCrmAsync(System.String,System.String)">
+            <summary>
+            Отправка Post запроса на CRM
+            </summary>
+            <param name="content"></param>
+            <param name="host"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.HttpClientProvider.HttpGetAsync(System.Uri)">
+            <summary>
+            Отправка GET запроса
+            </summary>
+            <param name="requestUri"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.Query.QueryProvider">
+            <summary>
+            Запросы к Crm
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.QueryProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.Query.IHttpClientProvider,BusinessLogicCore.Interfaces.Query.IXmlProvider,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="httpClientProvider"></param>
+            <param name="xmlProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.QueryProvider.SendQueryWithResponseAsync``1(System.String,System.String)">
+            <summary>
+            Запрос к Crm с ответом
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <param name="rootAttribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.QueryProvider.SendQueryToCrmAsync``1(System.String)">
+            <summary>
+            Запрос к Crm
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.QueryProvider.SendQueryForRk7Async``1(System.String)">
+            <summary>
+            Запрос к Ref
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.QueryProvider.SendQueryAsync(System.String)">
+            <summary>
+            Запрос к Crm
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.Query.XmlProvider">
+            <summary>
+            Сериализация и десериализация xml
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.XmlProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.XmlProvider.Deserialize``1(System.String,System.Int32)">
+            <summary>
+            Десериализация через MemoryStream
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.XmlProvider.DeserializeStringReader``1(System.String,System.String)">
+            <summary>
+            Десериализация через StringReader
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content"></param>
+            <param name="rootAttribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.Query.XmlProvider.Serialize``1(``0)">
+            <summary>
+            Сериализация
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.RK7.CashGroupProvider">
+            <summary>
+            Провайдер для работы с группами станций
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.CashGroupProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.IRefServerQueryProvider,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain},BusinessLogicCore.Interfaces.Query.IQueryProvider)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="refServerQueryProvider"></param>
+            <param name="logger"></param>
+            <param name="queryProvider"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.CashGroupProvider.GetCashGroupAsync">
+            <summary>
+            Получение групп станций
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.RK7.OrderProvider">
+            <summary>
+            Работа с заказом
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},CRM7UDatabase.Repositories.CardCitiesRepository,CRM7UDatabase.Repositories.CardStreetsRepository,SiteDatabase.Repositories.BSaleOrderRepository,SiteDatabase.Repositories.BSaleOrderPropsValueRepository,SiteDatabase.Repositories.BIblockElementRepository,SiteDatabase.Repositories.BIblockElementPropertyRepository,SiteDatabase.Repositories.BSaleBasketRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструтор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="cardCitiesRepository"></param>
+            <param name="cardStreetsRepository"></param>
+            <param name="bSaleOrderRepository"></param>
+            <param name="bSaleOrderPropsValueRepository"></param>
+            <param name="bIblockElementRepository"></param>
+            <param name="bIblockElementPropertyRepository"></param>
+            <param name="bSaleBasketRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.PrepareOrder(Models.Rk7.Order.Order,Models.Rk7.XmlConfig)">
+            <summary>
+            Подготовка заказа
+            </summary>
+            <param name="orderInfo"></param>
+            <param name="pluginConfiguration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.DefinitionAddress(Models.Rk7.Order.OrderPropertyInfo,Models.Rk7.Order.OrderPropertyInfo,System.String)">
+            <summary>
+            Определение атрибутов адреса доставкм
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.GetItems(Models.Rk7.Order.Order)">
+            <summary>
+            Получение объекта чека из OrderInfo
+            </summary>
+            <param name="orderInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.CreateOrder(Models.Rk7.Order.Order,System.Collections.Generic.List{Rk7Create.guest_item},Models.Rk7.XmlConfig)">
+            <summary>
+            Получение объекта заказа из OrderInfo
+            </summary>
+            <param name="orderInfo"></param>
+            <param name="guests"></param>
+            <param name="pluginConfiguration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.SaveOrder(Models.Rk7.Order.Order,System.Collections.Generic.List{Rk7Save.checkItem},Models.Rk7.XmlConfig)">
+            <summary>
+            Получение объекта для сохранения заказа
+            </summary>
+            <param name="orderInfo"></param>
+            <param name="items"></param>
+            <param name="pluginConfiguration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.GetOrder(System.Int32)">
+            <summary>
+            Получение заказа
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.GetOrderProperties(Models.Rk7.Order.Order)">
+            <summary>
+            Получение дополнительных параметров заказа из базы данных сайта
+            </summary>
+            <param name="orderInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.GetOrderPromoCode(Models.Rk7.Order.Order)">
+            <summary>
+            Получение информации по промокоду, использованному для оформления заказа
+            </summary>
+            <param name="orderInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.OrderProvider.GetOrderItems(Models.Rk7.Order.Order)">
+            <summary>
+            Получение информации о составе заказа с сайта
+            </summary>
+            <param name="orderInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.RK7.RestaurantProvider">
+            <summary>
+            Провайдер для получения информации о ресторанах
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.RestaurantProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.IRefServerQueryProvider,BusinessLogicCore.Interfaces.Query.IQueryProvider,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="refServerQueryProvider"></param>
+            <param name="queryProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.RestaurantProvider.GetRestaurantListAsync(System.String,System.Nullable{Models.Rk7.Brand})">
+            <summary>
+            Получение списка ресторанов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.RestaurantProvider.BuildingRestaurantList(System.Collections.Generic.List{Models.Rk7.Restaurant},System.String,System.Nullable{Models.Rk7.Brand})">
+            <summary>
+            Формирование списка ресторанов
+            </summary>
+            <param name="restaurantList"></param>
+            <param name="cityId"></param>
+            <param name="brand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.RestaurantProvider.GetRestaurantsAsync">
+            <summary>
+            Получение списка ресторанов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.RestaurantProvider.GetRestaurantAsync(System.Int32)">
+            <summary>
+            Получение ресторана по id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.RK7.Rk7Provider">
+            <summary>
+            Работа с ресурсами UCS
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.Rk7Provider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.Rk7.IOrderProvider,BusinessLogicCore.Interfaces.Query.IHttpClientProvider,BusinessLogicCore.Interfaces.Query.IXmlProvider,BusinessLogicCore.Interfaces.Crm.ICrmProvider,BusinessLogicCore.Interfaces.IRefServerQueryProvider,BusinessLogicCore.Interfaces.Query.IQueryProvider,CacheManager.Core.ICacheManager{System.Object},BusinessLogicCore.Interfaces.Rk7.IRestaurantProvider,BusinessLogicCore.Interfaces.Crm.IAddressProvider,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="appSettings"></param>
+            <param name="orderProvider"></param>
+            <param name="httpClientProvider"></param>
+            <param name="xmlProvider"></param>
+            <param name="crmProvider"></param>
+            <param name="refServerQueryProvider"></param>
+            <param name="queryProvider"></param>
+            <param name="menuCacheManager"></param>
+            <param name="restaurantProvider"></param>
+            <param name="addressProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.Rk7Provider.GetPluginConfigurationAsync">
+            <summary>
+            Получение конфигурации доставки
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.Rk7Provider.SendOrderToDeliveryAsync(System.Int32)">
+            <summary>
+            Отправка заказа в глобус
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.Rk7Provider.GetOrderAsync(System.Int32)">
+            <summary>
+            Получение информации о заказе
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="F:BusinessLogicCore.Controllers.RK7.Rk7Provider.MenuKey">
+            <summary>
+            Ключ для кеша меню
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.RK7.Rk7Provider.GetDishListAsync">
+            <summary>
+            Получение всего списка меню
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Controllers.SmsProvider">
+            <summary>
+            Работа с СМС
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.SmsProvider.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},BusinessLogicCore.Interfaces.IDeliveryTimeProvider,BusinessLogicCore.Interfaces.Rk7.IOrderProvider,BusinessLogicCore.Interfaces.Query.IHttpClientProvider,SiteDatabase.Repositories.BSaleOrderPropsValueRepository,CRM7UDatabase.Repositories.CardContactsRepository,CRM7UDatabase.Repositories.CardRegistersRepository,Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Работа с СМС
+            </summary>
+            <param name="appSettings"></param>
+            <param name="deliveryTimeProvider"></param>
+            <param name="orderProvider"></param>
+            <param name="httpClientProvider"></param>
+            <param name="bSaleOrderPropsValueRepository"></param>
+            <param name="cardContactsRepository"></param>
+            <param name="cardRegistersRepository"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.SmsProvider.SendSms(System.Int32)">
+            <summary>
+            Отправка смс по заказу
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.SmsProvider.GetTime(Models.Rk7.Order.Order)">
+            <summary>
+            Получение времени готовности заказа
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.SmsProvider.ChangeSmsStatus(System.Int32)">
+            <summary>
+            Обновление статуса смс для заказа в Бд
+            </summary>
+            <param name="orderId"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.SmsProvider.SendSmsAsync(System.String,System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            Отправка кода по номеру карты
+            </summary>
+            <param name="phone"></param>
+            <param name="cardCode"></param>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.SmsProvider.GenerateCode(Models.Rk7.Order.GuestInfo)">
+            <summary>
+            Генерация кода авторизации
+            </summary>
+            <param name="guestInfo"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Controllers.SmsProvider.GetRequestAsync(System.String,System.String)">
+            <summary>
+            Отправка смс с кодом активации карты
+            </summary>
+            <param name="phone"></param>
+            <param name="authCode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Infrastructure.BaseDomain">
+            <summary>
+            Базовый класс провайдеров
+            </summary>
+        </member>
+        <member name="F:BusinessLogicCore.Infrastructure.BaseDomain.AppSettings">
+            <summary>
+            Настройки приложения
+            </summary>
+        </member>
+        <member name="F:BusinessLogicCore.Infrastructure.BaseDomain.Logger">
+            <summary>
+            Менеджер логирования
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Infrastructure.BaseDomain.#ctor(Microsoft.Extensions.Options.IOptions{BusinessLogicCore.Models.AppSettings},Microsoft.Extensions.Logging.ILogger{BusinessLogicCore.Infrastructure.BaseDomain})">
+            <summary>
+            Базовый класс провайдеров
+            </summary>
+            <param name="appSettings"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Infrastructure.BaseDomain.Dispose">
+            <summary>
+            Уничтожение объекта
+            </summary>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Crm.IAddressProvider">
+            <summary>
+            Работа с адресами
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.IAddressProvider.GetStreetListAsync(System.String)">
+            <summary>
+            Получение списка улиц
+            </summary>
+            <param name="cityId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.IAddressProvider.GetCityListAsync">
+            <summary>
+            Получение списка городов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.IAddressProvider.GetMainCityListAsync">
+            <summary>
+            Получение списка основных городов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Crm.ICardProvider">
+            <summary>
+            Работа с картами
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICardProvider.CheckCard(System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            Проверка карты
+            </summary>
+            <param name="cardCode"></param>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICardProvider.ActivateCard(Models.Rk7.Order.GuestInfo)">
+            <summary>
+            Активация карты
+            </summary>
+            <param name="guestInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Crm.ICrmProvider">
+            <summary>
+            Работа с CRM
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICrmProvider.GetGuestsAsync(Models.Rk7.Order.Order,System.String)">
+            <summary>
+            Получение информации по гостю
+            </summary>
+            <param name="orderInfo"></param>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICrmProvider.GetBonusesAsync(System.String)">
+            <summary>
+            Получение информации о количестве бонусов
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICrmProvider.GetTransactions(System.String)">
+            <summary>
+             Получить транзакции пользователя
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICrmProvider.ActivateCardAsync(System.String,System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            Активация карты
+            </summary>
+            <param name="phone"></param>
+            <param name="cardCode"></param>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICrmProvider.EditHolderAsync(Models.Rk7.Order.GuestInfo)">
+            <summary>
+            Редактирование владельца карты
+            </summary>
+            <param name="guestInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICrmProvider.Activate(System.String)">
+            <summary>
+            Активация карты
+            </summary>
+            <param name="authCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.ICrmProvider.EditHolderAsync(Models.Crm.Holder.Holder)">
+            <summary>
+            Редактирование владельца карты
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Crm.IHolderProvider">
+            <summary>
+            Операции по владельцу карт
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.IHolderProvider.EditHolder(Models.Crm.Holder.Holder)">
+            <summary>
+            Редактирование пользователя
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.IHolderProvider.AddHolders(Models.Crm.Holder.Holder)">
+            <summary>
+            Добавление пользователя
+            </summary>
+            <param name="holder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Crm.IHolderProvider.GetHolder(System.String,System.String,System.Collections.Generic.List{Models.Crm.Holder.AddressInfo},System.String,System.DateTime)">
+            <summary>
+            Создание нового пользователя
+            </summary>
+            <param name="firstName"></param>
+            <param name="lastName"></param>
+            <param name="addressInfo"></param>
+            <param name="phone"></param>
+            <param name="birthDay"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IAdProvider">
+            <summary>
+            Информация по пользователя Active Directory
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IAdProvider.ValidateCredentials(System.String,System.String)">
+            <summary>
+            Проверка данных пользователя Active Directory
+            </summary>
+            <param name="sUserName"></param>
+            <param name="sPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IAdProvider.FindByIdentity(System.String)">
+            <summary>
+            Получение пользователя Active Directory по логину
+            </summary>
+            <param name="sUserName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IBankInfoProvider">
+            <summary>
+            Информация по банковским операциям
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IBankInfoProvider.GetPayment(System.String)">
+            <summary>
+            Информация о платеже
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IBindingZoneProvider">
+            <summary>
+            Связывание зон доставки и зон из Логистики
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IBindingZoneProvider.GetBindingZoneList">
+            <summary>
+            Получить список
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.ICrmQueryProvider">
+            <summary>
+            Запросы к Crm
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ICrmQueryProvider.GetStreetsInfo">
+            <summary>
+            Получение списка улиц из Crm
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ICrmQueryProvider.GetCitiesInfo">
+            <summary>
+            Получение списка городов из Crm
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ICrmQueryProvider.SearchHoldersByPhone(System.String)">
+            <summary>
+            Поиск пользователя по номеру телефона
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ICrmQueryProvider.GetTransactionList(System.String,System.Int32)">
+            <summary>
+            Получение списка транзакций пользователя по пользователю
+            </summary>
+            <param name="holderId"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.ICustomUserStore">
+            <summary>
+            Валидация данных пользователя
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ICustomUserStore.TryConnectForAd(System.String,System.String)">
+            <summary>
+            Валидация логина пароля ActiveDirectory
+            </summary>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ICustomUserStore.TryConnectForSite(System.String,System.String)">
+            <summary>
+            Валидация логина пароля сайта
+            </summary>
+            <param name="phone"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IDeliveryTimeProvider">
+            <summary>
+            Информация по доступному времени доставки и вывоза
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IDeliveryTimeProvider.GetDeliverySoonTime(System.String,System.String,System.String)">
+            <summary>
+            Получение ближайшего доступного времени на доставку 
+            </summary>
+            <param name="townName"></param>
+            <param name="streetName"></param>
+            <param name="houseNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IDeliveryTimeProvider.GetPickUpSoonTime(System.Int32)">
+            <summary>
+            Получение ближайшего доступного времени на вынос 
+            </summary>
+            <param name="restaurantId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IDeliveryTimeProvider.GetPickUpAtTime(System.Int32)">
+            <summary>
+            Получение списка доступных часов на вынос ко времени
+            </summary>
+            <param name="restaurantId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IDeliveryTimeProvider.GetDeliveryAtTime(System.String,System.String,System.String)">
+            <summary>
+            Получение списка доступных часов на доставку ко времени
+            </summary>
+            <param name="townName"></param>
+            <param name="streetName"></param>
+            <param name="houseNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IDeliveryTimeProvider.GetTimeList(System.Int32,System.Int32)">
+            <summary>
+            Получение списка доступных часов
+            </summary>
+            <param name="time"></param>
+            <param name="start"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IFeedBackProvider">
+            <summary>
+            Провайдер для работы с отзывами
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IFeedBackProvider.CreateFeedBack(FusionDatabase.Models.FeedBack)">
+            <summary>
+            Создание отзыва
+            </summary>
+            <param name="feedback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IFeedBackProvider.EditFeedBack(FusionDatabase.Models.FeedBack)">
+            <summary>
+            Редактирование отзыва
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IFeedBackProvider.DeleteFeedBack(System.Int32)">
+            <summary>
+            Удаление отзыва
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IFeedBackProvider.GetFeedBackListAsync(System.Int32,System.Int32,System.DateTime,System.DateTime,System.String,System.String)">
+            <summary>
+            Получение списка отзывов с разбивкой по страницам
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IFeedBackProvider.GetFeedBackListAsync(System.DateTime,System.DateTime,System.String,System.String)">
+            <summary>
+            Получение списка отзывов без разбивки по страницам
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IFeedBackProvider.GetFeedBack(System.Int32)">
+            <summary>
+            Получение отзыва
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.ILogisticProvider">
+            <summary>
+            Интерфейс для работы с данными логистики
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ILogisticProvider.GetLogisticList">
+            <summary>
+            Получение списка данных логистики
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ILogisticProvider.AddLogistic(Models.Logistic)">
+            <summary>
+            Добавление данных логистики
+            </summary>
+            <param name="logistic"></param>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ILogisticProvider.UpdateLogistic(Models.Logistic)">
+            <summary>
+            Обновление данных логистики
+            </summary>
+            <param name="logistic"></param>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IMailProvider">
+            <summary>
+            Отправка email сообщения
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IMailProvider.SendMail(System.String,System.String)">
+            <summary>
+            Отправка email сообщения
+            </summary>
+            <param name="content"></param>
+            <param name="header"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IMidServerQueryProvider">
+            <summary>
+            Запросы к Mid серверу
+            </summary>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.INpsProvider">
+            <summary>
+            Опрос пользователей
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.INpsProvider.CreateFeedback(FusionDatabase.Models.NpsSms)">
+            <summary>
+            Создать отзыв
+            </summary>
+            <param name="npsSms"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IRefServerQueryProvider">
+            <summary>
+            Запросы к Ref серверу
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IRefServerQueryProvider.GetMenuItems">
+            <summary>
+            Получение списка меню
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IRefServerQueryProvider.GetRestaurants">
+            <summary>
+            Получение списка ресторанов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IRefServerQueryProvider.GetPluginConfiguration">
+            <summary>
+            Получение конфигурации доставки
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IRefServerQueryProvider.GetCashGroupXmlQuery">
+            <summary>
+            Получение групп станций
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IRestaurantMaxLoadProvider">
+            <summary>
+            Максимальная нагрузка на рестораны
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IRestaurantMaxLoadProvider.GetRestaurantMaxLoadList">
+            <summary>
+            Получение списка максимальных нагрузок на рестораны
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.IRestLoadProvider">
+            <summary>
+            Нагрузка на ресторан (Загруженность ресторана)
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.IRestLoadProvider.GetRestaurantLoad(System.Nullable{System.Int64},System.Int32)">
+            <summary>
+            Нагрузка на ресторан
+            </summary>
+            <param name="restaurantId"></param>
+            <param name="daysToAdd"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.ISmsProvider">
+            <summary>
+            Работа с СМС
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ISmsProvider.SendSms(System.Int32)">
+            <summary>
+            Отправка смс по заказу
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ISmsProvider.GetRequestAsync(System.String,System.String)">
+            <summary>
+            Отправка смс с кодом активации карты
+            </summary>
+            <param name="phone"></param>
+            <param name="authCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.ISmsProvider.SendSmsAsync(System.String,System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            Отправка кода по номеру карты
+            </summary>
+            <param name="phone"></param>
+            <param name="cardCode"></param>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Query.IHttpClientProvider">
+            <summary>
+            Работа с серверами UCS по протоколу HTTP, и просто работа с запросами
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IHttpClientProvider.HttpPostAsync(System.String,System.String)">
+            <summary>
+            Отправка Post запроса
+            </summary>
+            <param name="content"></param>
+            <param name="host"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IHttpClientProvider.HttpPostWithResponseAsync(System.String,System.String)">
+            <summary>
+            Отправка Post запроса c возвратом результата
+            </summary>
+            <param name="content"></param>
+            <param name="host"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IHttpClientProvider.HttpGetAsync(System.Uri)">
+            <summary>
+            Отправка GET запроса
+            </summary>
+            <param name="requestUri"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IHttpClientProvider.HttpPostWithResponseCrmAsync(System.String,System.String)">
+            <summary>
+            Отправка Post запроса на CRM
+            </summary>
+            <param name="content"></param>
+            <param name="host"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Query.IQueryProvider">
+            <summary>
+            Запросы к Crm
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IQueryProvider.SendQueryWithResponseAsync``1(System.String,System.String)">
+            <summary>
+            Запрос к Crm с ответом
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <param name="rootAttribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IQueryProvider.SendQueryForRk7Async``1(System.String)">
+            <summary>
+            Запрос к Ref
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IQueryProvider.SendQueryAsync(System.String)">
+            <summary>
+            Запрос к Crm
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IQueryProvider.SendQueryToCrmAsync``1(System.String)">
+            <summary>
+            Запрос к Crm
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Query.IXmlProvider">
+            <summary>
+            Сериализация и десериализация xml
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IXmlProvider.Deserialize``1(System.String,System.Int32)">
+            <summary>
+            Десериализация через MemoryStream
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IXmlProvider.Serialize``1(``0)">
+            <summary>
+            Сериализация
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Query.IXmlProvider.DeserializeStringReader``1(System.String,System.String)">
+            <summary>
+            Десериализация через StringReader
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="content"></param>
+            <param name="rootAttribute"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Rk7.ICashGroupProvider">
+            <summary>
+            Группы станций
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.ICashGroupProvider.GetCashGroupAsync">
+            <summary>
+            Получение группы станций
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Rk7.IOrderProvider">
+            <summary>
+            Работа с заказом
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IOrderProvider.GetOrderProperties(Models.Rk7.Order.Order)">
+            <summary>
+            Получение пополнительных свойств заказа
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IOrderProvider.GetOrderPromoCode(Models.Rk7.Order.Order)">
+            <summary>
+            Получение промокода
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IOrderProvider.GetOrderItems(Models.Rk7.Order.Order)">
+            <summary>
+            Получение блюд в заказе
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IOrderProvider.PrepareOrder(Models.Rk7.Order.Order,Models.Rk7.XmlConfig)">
+            <summary>
+            Подготовка заказа к отправке
+            </summary>
+            <param name="order"></param>
+            <param name="pluginConfiguration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IOrderProvider.GetItems(Models.Rk7.Order.Order)">
+            <summary>
+            Добавление информации о блюдах в сериализованный запрос
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IOrderProvider.CreateOrder(Models.Rk7.Order.Order,System.Collections.Generic.List{Rk7Create.guest_item},Models.Rk7.XmlConfig)">
+            <summary>
+            Сериализация запроса на создание заказа 
+            </summary>
+            <param name="order"></param>
+            <param name="guests"></param>
+            <param name="pluginConfiguration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IOrderProvider.SaveOrder(Models.Rk7.Order.Order,System.Collections.Generic.List{Rk7Save.checkItem},Models.Rk7.XmlConfig)">
+            <summary>
+            Сериализация запроса на сохранение запроса
+            </summary>
+            <param name="order"></param>
+            <param name="items"></param>
+            <param name="pluginConfiguration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IOrderProvider.GetOrder(System.Int32)">
+            <summary>
+            Получение заказа
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Rk7.IRestaurantProvider">
+            <summary>
+            Обработка информации по ресторанам
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IRestaurantProvider.GetRestaurantListAsync(System.String,System.Nullable{Models.Rk7.Brand})">
+            <summary>
+            Получение списка ресторанов для сайта
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IRestaurantProvider.GetRestaurantAsync(System.Int32)">
+            <summary>
+            Получение информации по ресторану по Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Interfaces.Rk7.IRk7Provider">
+            <summary>
+            Работа с ресурсами UCS
+            </summary>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IRk7Provider.SendOrderToDeliveryAsync(System.Int32)">
+            <summary>
+            Отправка заказа в глобус
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IRk7Provider.GetDishListAsync">
+            <summary>
+            Получение всего списка меню
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLogicCore.Interfaces.Rk7.IRk7Provider.GetOrderAsync(System.Int32)">
+            <summary>
+            Получение информации о заказе
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BusinessLogicCore.Models.AppSettings">
+            <summary>
+            Настройки приложения
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.Version">
+            <summary>
+            Версия API
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.UserAdGuid">
+            <summary>
+            Идентификатор текущего пользователя
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.UserAdName">
+            <summary>
+            Идентификатор в AD
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.SmsDeliveryIntervalPlus">
+            <summary>
+            Время для добавление в смс
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.SmsDeliveryIntervalMinus">
+            <summary>
+            Время для уменьшения в смс
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.CallCenterMidServer">
+            <summary>
+            Ip адрес mid сервера Контактного центра
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.RefServer">
+            <summary>
+            Ip адрес ref сервера
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.CrmServer">
+            <summary>
+            Ip адрес Crm сервера
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.ActiveDirectoryIp">
+            <summary>
+            Ip адрес сервера Active Directory
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.AppSettings.Secret">
+            <summary>
+            Секретный ключ
+            </summary>
+        </member>
+        <member name="T:BusinessLogicCore.Models.ApplicationUser">
+            <summary>
+            Пользователь авторизованный
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.Id">
+            <summary>
+            Идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.UserName">
+            <summary>
+            Логин пользователя
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.Phone">
+            <summary>
+            Номер телефона
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.Email">
+            <summary>
+            Email адрес
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.Surname">
+            <summary>
+            Фамилия
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.Name">
+            <summary>
+            Имя
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.Patronymic">
+            <summary>
+            Отчество
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.Claims">
+            <summary>
+            Права пользователя
+            </summary>
+        </member>
+        <member name="P:BusinessLogicCore.Models.ApplicationUser.Token">
+            <summary>
+            Токен
+            </summary>
+        </member>
+    </members>
+</doc>
