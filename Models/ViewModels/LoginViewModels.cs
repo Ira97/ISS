@@ -2,7 +2,7 @@
 using System.DirectoryServices;
 using DirectoryEntry = System.DirectoryServices.DirectoryEntry;
 
-namespace Vega.Models
+namespace Models.ViewModels
 {
     public class LoginViewModel
     {
@@ -23,9 +23,10 @@ namespace Vega.Models
             if (string.IsNullOrEmpty(accountName)) return string.Empty;
             var entry = new DirectoryEntry
             {
-                Path = "LDAP://fg.local:389/DC=fg,DC=local", AuthenticationType = AuthenticationTypes.Secure
+                Path = "LDAP://fg.local:389/DC=fg,DC=local",
+                AuthenticationType = AuthenticationTypes.Secure
             };
-            var search = new DirectorySearcher(entry) {Filter = "(SAMAccountName=" + accountName + ")"};
+            var search = new DirectorySearcher(entry) { Filter = "(SAMAccountName=" + accountName + ")" };
             search.PropertiesToLoad.Add(propertyName);
             var results = search.FindAll();
             return results.Count > 0 ? results[0].Properties[propertyName][0].ToString() : "Unknown User";

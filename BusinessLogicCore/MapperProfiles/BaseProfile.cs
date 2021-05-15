@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Models;
 using ScientificDatabase.Models;
 using System;
 using System.Collections.Generic;
@@ -14,8 +13,8 @@ namespace BusinessLogicCore.MapperProfiles
     {
         public BaseProfile()
         {
-            CreateMap<ScientificDatabase.Models.User, Models.User>();
-            CreateMap<ScientificDatabase.Models.UserRole, Models.UserRole>();
+            CreateMap<ScientificDatabase.Models.User, Models.User.User>();
+            CreateMap<ScientificDatabase.Models.UserRole, Models.User.UserRole>();
         }
     }
 }

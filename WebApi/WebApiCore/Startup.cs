@@ -6,6 +6,7 @@ using System.Text;
 using AutoMapper;
 using BusinessLogicCore.Controllers;
 using BusinessLogicCore.Interfaces;
+using BusinessLogicCore.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -20,7 +21,8 @@ using Microsoft.OpenApi.Models;
 using MiddleWares;
 using ScientificDatabase.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-
+using WebApiHandlers.Interfaces;
+using WebApiHandlers.Providers;
 
 namespace WebApiCore
 {
@@ -166,7 +168,9 @@ namespace WebApiCore
            
             services.AddScoped<IMapperProvider, MapperProvider>();        
             services.AddScoped<IHashProvider, HashProvider>();
-            services.AddScoped<BusinessLogicCore.Service.IUserService, BusinessLogicCore.Service.UserService>();
+            services.AddScoped<IWebHttpClientProvider, WebHttpClientProvider>();
+            services.AddScoped<IUserService, UserService>();
+          
            
 
 
@@ -175,7 +179,7 @@ namespace WebApiCore
             //Репозитории 
 
             services.AddScoped<ScientificDatabase.Repositories.UserRepository.UserRepository>();
-          
+            services.AddScoped<ScientificDatabase.Repositories.UserRepository.UserRoleRepository>();
 
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

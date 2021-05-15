@@ -15,22 +15,19 @@ namespace WebApiHandlers.Providers
     /// <inheritdoc cref="IWebHttpClientProvider"/>>
     public class WebHttpClientProvider : BaseProvider , IWebHttpClientProvider
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IAccessTokenProvider _accessTokenProvider;
+
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="WebHttpClientProvider"/>
         /// </summary>
         /// <param name="appSettings"></param>
         /// <param name="logger"></param>
-        /// <param name="httpContextAccessor"></param>
-        /// <param name="accessTokenProvider"></param>
+
         
-        public WebHttpClientProvider(IOptions<AppSettings> appSettings, ILogger<WebHttpClientProvider> logger,
-            IHttpContextAccessor httpContextAccessor, IAccessTokenProvider accessTokenProvider) : base(appSettings, logger)
+        public WebHttpClientProvider(IOptions<AppSettings> appSettings, ILogger<WebHttpClientProvider> logger
+            ) : base(appSettings, logger)
         {
-            _httpContextAccessor = httpContextAccessor;
-            _accessTokenProvider = accessTokenProvider;
+            
         }
 
         /// <inheritdoc/>

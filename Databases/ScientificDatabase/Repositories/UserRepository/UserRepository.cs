@@ -13,11 +13,12 @@ namespace ScientificDatabase.Repositories.UserRepository
         {
         }
 
-        public User GetUserAsync(string login)
+        public User GetUserAsync(string login, string hashPassword)
         {
             var user = ScientificContext.User
                 .Include(x => x.Roles)
-                .Where(x => x.Login == login).ToList().FirstOrDefault();
+                .Where(x => x.Login == login && x.Password == hashPassword).ToList().FirstOrDefault();
+
             return user;
         }
     }
