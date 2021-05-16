@@ -107,7 +107,7 @@ namespace ScientificDatabase.Migrations
                     b.HasOne("ScientificDatabase.Models.Hierarchy.Area", "Area")
                         .WithMany("Section")
                         .HasForeignKey("AreaId");
-                });
+                }));
 
             modelBuilder.Entity("ScientificDatabase.Models.UserRole", b =>
                 {
