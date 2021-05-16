@@ -132,31 +132,6 @@ namespace WebApiCore
             });
             
 #endif
-            //Конфигурация
-            // var appSettingsSection = Configuration.GetSection(nameof(AppSettings));
-            // services.Configure<AppSettings>(appSettingsSection);
-            // var appSettings = appSettingsSection.Get<AppSettings>();
-
-            //Авторизация
-            // var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            // services.AddAuthentication(x =>
-            // {
-            //     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            // })
-            //     .AddJwtBearer(x =>
-            //     {
-            //         x.RequireHttpsMetadata = false;
-            //         x.SaveToken = true;
-            //         x.TokenValidationParameters = new TokenValidationParameters
-            //         {
-            //             ValidateIssuerSigningKey = true,
-            //             IssuerSigningKey = new SymmetricSecurityKey(key),
-            //             ValidateIssuer = false,
-            //             ValidateAudience = false
-            //         };
-            //     });
-            // services.AddHttpContextAccessor();
 
             //Кэш менеджер
             services.AddCacheManagerConfiguration(Configuration);
@@ -170,16 +145,15 @@ namespace WebApiCore
             services.AddScoped<IHashProvider, HashProvider>();
             services.AddScoped<IWebHttpClientProvider, WebHttpClientProvider>();
             services.AddScoped<IUserService, UserService>();
-          
-           
-
-
-
+            services.AddScoped<IAreaService, AreaService>();
+            services.AddScoped<ISectionService, SectionService>();
 
             //Репозитории 
 
             services.AddScoped<ScientificDatabase.Repositories.UserRepository.UserRepository>();
             services.AddScoped<ScientificDatabase.Repositories.UserRepository.RoleRepository>();
+            services.AddScoped<ScientificDatabase.Repositories.HierarchyRepository.AreaRepository>();
+            services.AddScoped<ScientificDatabase.Repositories.HierarchyRepository.SectionRepositopy>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc(option =>

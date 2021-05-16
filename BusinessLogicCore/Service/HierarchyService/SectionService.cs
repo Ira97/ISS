@@ -7,10 +7,11 @@ using FluentResults;
 using Models;
 using ScientificDatabase.Models.Hierarchy;
 using ScientificDatabase.Repositories;
+using ScientificDatabase.Repositories.HierarchyRepository;
 
 namespace BusinessLogicCore.Service
 {
-    public class SectionService
+    public class SectionService : ISectionService
     {
         private SectionRepositopy _sectionRepositopy;
         private IMapperProvider _mapperProvider;

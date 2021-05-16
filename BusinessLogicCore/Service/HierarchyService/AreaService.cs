@@ -7,10 +7,11 @@ using FluentResults;
 using Models;
 using ScientificDatabase.Models.Hierarchy;
 using ScientificDatabase.Repositories;
+using ScientificDatabase.Repositories.HierarchyRepository;
 
 namespace BusinessLogicCore.Service
 {
-    public class AreaService
+    public class AreaService: IAreaService
     {
         private AreaRepository _areaRepository;
         private IMapperProvider _mapperProvider;
@@ -35,7 +36,7 @@ namespace BusinessLogicCore.Service
             }
         }
         
-        public async Task<Result<List<AreaDto>>> GetAreaAsync()
+        public async Task<Result<List<AreaDto>>> GetAreasAsync()
         {
             try
             {

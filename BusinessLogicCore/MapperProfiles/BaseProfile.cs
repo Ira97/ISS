@@ -17,6 +17,9 @@ namespace BusinessLogicCore.MapperProfiles
         {
             CreateMap<ScientificDatabase.Models.User, Models.User.User>();
             CreateMap<AreaDto, Area>();
+            CreateMap<Area, AreaDto>();
+            CreateMap<SectionDto, Section>();
+            CreateMap<Section, SectionDto>();
         }
     }
 }

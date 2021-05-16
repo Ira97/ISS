@@ -39,7 +39,7 @@ namespace WebApiCore.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("register")]
-        public async System.Threading.Tasks.Task RegisterUserAsync([FromBody] RegisterUserDto registerUser)
+        public async Task RegisterUserAsync([FromBody] RegisterUserDto registerUser)
         {
             await _userService.RegisterUserAsync(registerUser);
         }
