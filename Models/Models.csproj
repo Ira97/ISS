@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <Folder Include="Hierarchy" />
+    <Folder Include="TypeObject" />
   </ItemGroup>
 
   <ItemGroup>
