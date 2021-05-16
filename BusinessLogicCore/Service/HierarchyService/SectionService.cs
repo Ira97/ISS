@@ -35,5 +35,19 @@ namespace BusinessLogicCore.Service
                 return Result.Fail("При создании раздела науки возникла ошибка.");
             }
         }
+
+        public async Task<Result<List<SectionDto>>> GetSectionsAsync(int parentId)
+        {
+            try
+            {
+                var result = await _sectionRepositopy.GetListAsync(x => x.ParentId == parentId);
+                var sectionDtos = _mapperProvider.CreateMapForList<Section, SectionDto>(result);
+                return Result.Ok(sectionDtos);
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail("При получении списка разделов произошла ошибка.");
+            }
+        }
     }
 }
