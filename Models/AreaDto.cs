@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using ScientificDatabase.Models.Hierarchy;
 
 namespace Models
 {
-    public class Area
+    public class AreaDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual List<AreaSection> Section { set; get; }
+        public virtual List<SectionDto> Section { set; get; }
     }
 }

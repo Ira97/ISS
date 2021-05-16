@@ -8,6 +8,6 @@ namespace ScientificDatabase.Models.Hierarchy
     public class Section: BaseEntity
     {
         public string Name { set; get; }
-         public virtual List<AreaSection> Area { set; get; }
+        public virtual Area Area { set; get; }
     }
 }

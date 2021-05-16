@@ -45,4 +45,8 @@
     <Folder Include="Hierarchy" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Databases\ScientificDatabase\ScientificDatabase.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -20,7 +20,7 @@ namespace ScientificDatabase.Models
         public virtual DbSet<UserRole> UserRole { get; set; } 
         public virtual DbSet<Area> Area { set; get; }
         public virtual DbSet<Section> Section { set; get; }
-        public virtual DbSet<AreaSection> AreaSection { set; get; }
+        // public virtual DbSet<AreaSection> AreaSection { set; get; }
 
         /// <summary>
         /// Страка подключения используемая при миграции базы данных
@@ -30,7 +30,7 @@ namespace ScientificDatabase.Models
         {
             //if (!optionsBuilder.IsConfigured)
             //{
-            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=Scientific;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS01;Database=Scientific;Trusted_Connection=True;MultipleActiveResultSets=true");
             //}
         }
 

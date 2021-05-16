@@ -3,6 +3,8 @@ using ScientificDatabase.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Models;
+using ScientificDatabase.Models.Hierarchy;
 
 namespace BusinessLogicCore.MapperProfiles
 {
@@ -15,6 +17,7 @@ namespace BusinessLogicCore.MapperProfiles
         {
             CreateMap<ScientificDatabase.Models.User, Models.User.User>();
             CreateMap<ScientificDatabase.Models.UserRole, Models.User.UserRole>();
+            CreateMap<AreaDto, Area>();
         }
     }
 }
