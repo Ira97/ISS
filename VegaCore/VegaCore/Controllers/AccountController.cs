@@ -102,7 +102,7 @@ namespace Vega.Controllers
                 return View(model);
             }
             await _accessTokenProvider.RegisterUserAsync(model);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         /// <summary>
@@ -112,17 +112,15 @@ namespace Vega.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            Response.Cookies.Delete("Token");
             return RedirectToAction("Login", "Account");
         }
 
         private async Task Authenticate(ApplicationUser applicationUser)
         {
-            var claims = new List<Claim> { new Claim(ClaimsIdentity.DefaultNameClaimType, applicationUser.UserName) };
+            var claims = new List<Claim> { new Claim(ClaimsIdentity.DefaultNameClaimType, applicationUser.Name) };
             claims.AddRange(applicationUser.Claims);
             var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-            Response.Cookies.Append("Token", applicationUser.Token);
         }
 
     }

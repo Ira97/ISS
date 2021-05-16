@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityServer4.Stores.Serialization;
 using Microsoft.Extensions.Logging;
@@ -43,7 +45,22 @@ namespace WebApiHandlers.Providers
                     Password = password
                 };
                 var user = await _httpClientProvider.SendHttpPostWithResponse<User>(validateUser, "user/validate");
+                if (user.Id != null)
+                {
+                    var applicationUser = new ApplicationUser
+                    {
+                        Id = user.Id,
+                        Name = user.FullName,
+                        UserName = user.Login,
+                        Phone = user.Contact,
+                        Claims = new List<Claim>()
+                    };
+                    var claim = new Claim(ClaimTypes.Role, user.Role.Name);
+                    applicationUser.Claims.Add(claim);
+                    return applicationUser;
+                }
                 return new ApplicationUser();
+
             }
             catch (Exception exception)
             {

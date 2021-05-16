@@ -2,7 +2,7 @@ https://www.entityframeworktutorial.net/efcore/create-model-for-existing-databas
 
 Scaffold-DbContext "Data Source=10.1.0.64;Initial Catalog=CRM7U;User Id=VEGA;Password=eWsaIFUIUxN6Y2h09ZdZ;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models - создание моделей на основе существующей БД
 dotnet ef migrations add - создание миграции
-dotnet ef migrations add Initial --project "C:\Users\User\Desktop\Project\Databases\ScientificDatabase" --startup-project "C:\Users\User\Desktop\Project\WebApi\WebApiCore" --context ScientificContext пример создания миграции для netstandart
+dotnet ef migrations add Initial --project "C:\project\ISS\Databases\ScientificDatabase" --startup-project "C:\project\ISS\WebApi\WebApiCore" --context ScientificContext пример создания миграции для netstandart
 dotnet ef database update - обновление базы данные
 Data Source=10.1.0.64;Initial Catalog=Fusion;User Id=VEGA;Password=eWsaIFUIUxN6Y2h09ZdZ; - пример строки подключения
 

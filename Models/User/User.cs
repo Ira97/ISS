@@ -4,11 +4,11 @@ namespace Models.User
 {
     public class User
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string FullName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string Contact { get; set; }
-        public virtual List<UserRole> Roles { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

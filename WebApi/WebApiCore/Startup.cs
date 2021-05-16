@@ -179,8 +179,7 @@ namespace WebApiCore
             //Репозитории 
 
             services.AddScoped<ScientificDatabase.Repositories.UserRepository.UserRepository>();
-            services.AddScoped<ScientificDatabase.Repositories.UserRepository.UserRoleRepository>();
-
+            services.AddScoped<ScientificDatabase.Repositories.UserRepository.RoleRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc(option =>

@@ -1,9 +1,9 @@
 ﻿namespace Models.User
 {
-    public class UserRole
+    public class Role
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public int RoleId { get; set; }
+        public string Name { get; set; }
+        public string AltName { get; set; }
     }
 }

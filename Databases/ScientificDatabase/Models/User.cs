@@ -8,6 +8,7 @@ namespace ScientificDatabase.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string Contact { get; set; }
-        public virtual List<UserRole> Roles { get; set; }
+        public virtual Role Role { get; set; }
+        public int RoleId { get; set; }
     }
 }

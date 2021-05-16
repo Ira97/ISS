@@ -6,6 +6,6 @@ namespace ScientificDatabase.Models
     {
         public string Name { get; set; }
         public string AltName { get; set; }
-        public virtual List<UserRole> Roles { get; set; }
+        public virtual List<User> Users { get; set; }
     }
 }

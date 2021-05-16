@@ -15,7 +15,7 @@ namespace Models.Security
         /// <summary>
         /// Идентификатор пользователя
         /// </summary>
-        public string Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Логин пользователя
@@ -58,54 +58,5 @@ namespace Models.Security
         /// Список claims
         /// </summary>
         public List<Claim> Claims { get; set; }
-    }
-
-    /// <summary>
-    /// Пользователь авторизованный
-    /// </summary>
-    public class OldApplicationUser
-    {
-        /// <summary>
-        /// Идентификатор пользователя
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Логин пользователя
-        /// </summary>
-        public string UserName { get; set; }
-
-        /// <summary>
-        /// Номер телефона
-        /// </summary>
-        public string Phone { get; set; }
-
-        /// <summary>
-        /// Email адрес
-        /// </summary>
-        public string Email { get; set; }
-
-        /// <summary>
-        /// Фамилия
-        /// </summary>
-        public string Surname { get; set; }
-
-        /// <summary>
-        /// Имя
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Отчество
-        /// </summary>
-        public string Patronymic { get; set; }
-        /// <summary>
-        /// Токен
-        /// </summary>
-        public string Token { get; set; }
-        /// <summary>
-        /// Токен
-        /// </summary>
-        public Token SecurityToken { get; set; }
     }
 }

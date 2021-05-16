@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Models.User;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Threading.Tasks;
 
 namespace WebApiCore.Controllers
 {
@@ -49,9 +50,9 @@ namespace WebApiCore.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("validate")]
-        public User ValidateUserAsync([FromBody] ValidateUserDto validateUser)
+        public async Task<User> ValidateUserAsync([FromBody] ValidateUserDto validateUser)
         {
-            return _userService.ValidateUserAsync(validateUser);
+              return await _userService.ValidateUserAsync(validateUser);
         }
     }
 }
