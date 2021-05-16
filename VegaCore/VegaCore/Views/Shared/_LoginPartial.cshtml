@@ -5,7 +5,7 @@
     using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
-        <button type="button" class="btn btn-light col-sm-12 col-lg-auto mb-1 mb-sm-0">@LoginViewModel.GetUserProperty(User.Identity.Name, "DisplayName")</button>
+        <button type="button" class="btn btn-light col-sm-12 col-lg-auto mb-1 mb-sm-0">@User.Identity.Name</button>
         <button type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-1 mb-sm-0" onclick="location.href='@Url.Action("Logout", "Account")'">Выйти</button>
     }
 }

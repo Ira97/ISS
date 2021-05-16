@@ -10,24 +10,26 @@ namespace BusinessLogicCore.Service
     public class UserService : IUserService
     {
         private readonly UserRepository _userRepository;
-        private readonly UserRoleRepository _userRoleRepository;
         private readonly IMapperProvider _mapperProvider;
         private readonly IHashProvider _hashProvider;
 
-        public UserService(UserRepository userRepository, IMapperProvider mapperProvider, IHashProvider hashProvider, UserRoleRepository userRoleRepository)
+        public UserService(UserRepository userRepository, IMapperProvider mapperProvider, IHashProvider hashProvider)
         {
             _userRepository = userRepository;
             _mapperProvider = mapperProvider;
             _hashProvider = hashProvider;
-            _userRoleRepository = userRoleRepository;
         }
 
-        public User ValidateUserAsync(ValidateUserDto validateUser)
+        public async Task<User> ValidateUserAsync(ValidateUserDto validateUser)
         {
             var hashPassword = _hashProvider.HashMd5(validateUser.Password);
             var user = _userRepository.GetUserAsync(validateUser.Login, hashPassword);
-            var mappedUser = _mapperProvider.CreateMapByProfile<ScientificDatabase.Models.User, User, BaseProfile>(user);
-            return mappedUser;
+            if (user != null)
+            {
+                var mappedUser = _mapperProvider.CreateMapByProfile<ScientificDatabase.Models.User, User, BaseProfile>(user);
+                return mappedUser;
+            }
+            return new User();
         }
         public async Task RegisterUserAsync(RegisterUserDto registerUser)
         {
@@ -41,21 +43,12 @@ namespace BusinessLogicCore.Service
                         Password = _hashProvider.HashMd5(registerUser.Password),
                         FullName = registerUser.FullName,
                         Contact = registerUser.Contact,
-                        Roles = new System.Collections.Generic.List<ScientificDatabase.Models.UserRole>()
+                        RoleId = 3
                     };
-                    var userId = await _userRepository.InsertItemAsync(user);
-                    if (userId != 0)
-                    {
-                        var userRole = new ScientificDatabase.Models.UserRole
-                        {
-                            UserId = Convert.ToInt32(userId),
-                            RoleId = 3
-                        };
-                        await _userRoleRepository.InsertItemAsync(userRole);
-                    }
+                    var userId = await _userRepository.InsertItemAsync(user);                
                 }
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw new Exception("Не удалось создать пользовател, попробуйте позднее");
             }
