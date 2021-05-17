@@ -8,5 +8,6 @@ namespace Models
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual List<SectionDto> Section { set; get; }
+        public string ImageName { get; set; }
     }
 }

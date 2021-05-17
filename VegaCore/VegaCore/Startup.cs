@@ -35,7 +35,7 @@ namespace Vega
 
             services.AddControllersWithViews();
             services.AddScoped<IWebHttpClientProvider, WebHttpClientProvider>();
-           
+            services.AddScoped<IAreaProvider, AreaProvider>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUserProvider, UserProvider>();
            
@@ -73,7 +73,10 @@ namespace Vega
             app.UseSession();
             app.UseStaticFiles();
             app.UseReact(config => { });
-            app.UseEndpoints(endpoints => { endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"); });
+            app.UseEndpoints(endpoints => 
+            {
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"); 
+            });
         }
     }
 }

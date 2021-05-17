@@ -1,0 +1,33 @@
+﻿@model Models.ViewModels.AreaViewModel
+@{
+    ViewBag.Title = "Области науки";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="nav nav-pills">
+    @foreach (var area in Model.AreaList)
+    {
+        <li class="nav-item col-lg-3 mb-3">
+            <a href="@Url.RouteUrl(new { controller = "Area", action = "View", id = area.Id })">
+                @if (area.ImageName != null)
+                {
+                    <div class="nav-link" style="background-image: url(../img/@area.ImageName);">
+                        <div class="text-white display-4" style="min-height: 35vh; line-height: 32vh ; text-align: center">@area.Name</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="nav-link bg-light">
+                        <div class="display-4" style="min-height: 35vh; line-height: 32vh ; text-align: center">@area.Name</div>
+                    </div>
+                }
+            </a>
+        </li>
+    }
+    <li class="nav-item col-lg-3 mb-3">
+        <a href="@Url.Action("index", "Area")">
+            <div class="nav-link bg-light">
+                <div class="display-4" style="min-height: 35vh; line-height: 32vh ; text-align: center">+</div>
+            </div>
+        </a>
+    </li>
+</ul>
