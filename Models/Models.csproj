@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Hierarchy\**" />
+    <Compile Remove="TypeObject\**" />
+    <EmbeddedResource Remove="Hierarchy\**" />
+    <EmbeddedResource Remove="TypeObject\**" />
+    <None Remove="Hierarchy\**" />
+    <None Remove="TypeObject\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Enums.NET" Version="3.0.3" />
     <PackageReference Include="FluentResults" Version="2.3.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
@@ -39,11 +48,6 @@
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Hierarchy" />
-    <Folder Include="TypeObject" />
   </ItemGroup>
 
   <ItemGroup>

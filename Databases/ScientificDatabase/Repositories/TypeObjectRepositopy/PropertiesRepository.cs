@@ -5,9 +5,9 @@ using ScientificDatabase.Models.TypeObject;
 
 namespace ScientificDatabase.Repositories.TypeObjectRepositopy
 {
-    public class PropertiesRepository: BaseRepository<Properties>
+    public class PropertiesRepository: BaseRepository<Property>
     {
-        protected PropertiesRepository(ScientificContext dbContext, ICacheManager<object> cacheManager, ILogger<BaseRepository<Properties>> logger) : base(dbContext, cacheManager, logger)
+        protected PropertiesRepository(ScientificContext dbContext, ICacheManager<object> cacheManager, ILogger<BaseRepository<Property>> logger) : base(dbContext, cacheManager, logger)
         {
         }
     }

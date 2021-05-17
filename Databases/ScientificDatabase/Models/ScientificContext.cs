@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using ScientificDatabase.Models.Hierarchy;
+using ScientificDatabase.Models.TypeObject;
 
 namespace ScientificDatabase.Models
 {
@@ -17,10 +18,12 @@ namespace ScientificDatabase.Models
 
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        //public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<Area> Area { set; get; }
         public virtual DbSet<Section> Section { set; get; }
-        // public virtual DbSet<AreaSection> AreaSection { set; get; }
+        public virtual DbSet<DataObject> DataObjects { set; get; }
+        public virtual DbSet<Property> Properties { set; get; }
+        public virtual DbSet<TypeObject.TypeObject> TypeObjects { set; get; }
+        public virtual DbSet<ValuePropertyObject> ValuePropertyObjects { set; get; }
 
         /// <summary>
         /// Страка подключения используемая при миграции базы данных
