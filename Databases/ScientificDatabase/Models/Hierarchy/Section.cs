@@ -9,8 +9,7 @@ namespace ScientificDatabase.Models.Hierarchy
     {
         public string Name { set; get; }
         public virtual Area Area { set; get; }
-        public int AreaId { get; set; }
-        public int ParentId { set; get; }
-        public virtual List<TypeObject.TypeObject> TypeObjects { get; set; }
+        public int ParentId { set; get;}
+        public  virtual List<TypeObject.TypeObject> TypeObjects { set; get; }
     }
 }
