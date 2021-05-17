@@ -50,18 +50,10 @@ namespace WebApiCore.Controllers
         [HttpGet("{areaId}")]
         public async Task<AreaDto> GetAreaAsync([FromRoute] int areaId)
         {
-            try
-            {
-                var result =  await _areaService.GetSectionsForAreaAsync(areaId);
+            var result =  await _areaService.GetSectionsForAreaAsync(areaId);
                 if (result.IsFailed)
                     return result.Value;
                 return result.Value;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
         }
         
         [ProducesResponseType(typeof(List<AreaDto>), 200)]
