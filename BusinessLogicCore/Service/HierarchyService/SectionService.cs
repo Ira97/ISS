@@ -8,12 +8,16 @@ using Models;
 using ScientificDatabase.Models.Hierarchy;
 using ScientificDatabase.Repositories;
 using ScientificDatabase.Repositories.HierarchyRepository;
+using ScientificDatabase.Repositories.TypeObjectRepositopy;
 
 namespace BusinessLogicCore.Service
 {
     public class SectionService : ISectionService
     {
         private SectionRepositopy _sectionRepositopy;
+        private TypeObjectRepositopy _typeObjectRepositopy;
+        private DataObjectRepository _dataObjectRepository;
+        
         private IMapperProvider _mapperProvider;
 
         public SectionService(SectionRepositopy sectionRepositopy, IMapperProvider mapperProvider)
@@ -36,12 +40,14 @@ namespace BusinessLogicCore.Service
             }
         }
 
-        public async Task<Result<List<SectionDto>>> GetSectionsAsync(int parentId)
+        public async Task<Result<MainSectionDto>> GetSectionsAsync(int id)
         {
             try
             {
-                var result = await _sectionRepositopy.GetListAsync(x => x.ParentId == parentId);
-                var sectionDtos = _mapperProvider.CreateMapForList<Section, SectionDto>(result);
+                var mainSection = await _sectionRepositopy.GetItemAsync(id);
+                var result = await _sectionRepositopy.GetListAsync(x => x.ParentId == id);
+                var typeObject = await _typeObjectRepositopy.GetListAsync(x => x.Section.Id == id);
+                
                 return Result.Ok(sectionDtos);
             }
             catch (Exception ex)

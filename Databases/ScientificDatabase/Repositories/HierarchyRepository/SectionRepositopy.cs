@@ -11,7 +11,8 @@ namespace ScientificDatabase.Repositories.HierarchyRepository
 {
     public class SectionRepositopy: BaseRepository<Section>
     {
-        public SectionRepositopy(ScientificContext dbContext, ICacheManager<object> cacheManager, ILogger<BaseRepository<Section>> logger) : base(dbContext, cacheManager, logger)
+        public SectionRepositopy(ScientificContext dbContext, ICacheManager<object> cacheManager,
+            ILogger<BaseRepository<Section>> logger) : base(dbContext, cacheManager, logger)
         {
         }
     }
