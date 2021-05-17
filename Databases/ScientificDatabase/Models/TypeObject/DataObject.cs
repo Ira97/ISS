@@ -3,6 +3,6 @@
     public class DataObject: BaseEntity
     {
         public string Name{set; get; }
-        public int TypeObjectId { set; get; }
+        public virtual TypeObject TypeObject { set; get; }
     }
 }
