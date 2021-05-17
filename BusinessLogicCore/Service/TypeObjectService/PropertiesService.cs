@@ -2,7 +2,7 @@
 {
     public class PropertiesService
     {
-        private readonly UserRepository _userRepository;
-        private readonly IMapperProvider _mapperProvider;
+        //private readonly UserRepository _userRepository;
+        //private readonly IMapperProvider _mapperProvider;
     }
 }

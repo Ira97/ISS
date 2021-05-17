@@ -7,5 +7,6 @@ namespace ScientificDatabase.Models.TypeObject
         public string Name { set; get; }
         public int SectionId { set; get; }
         public virtual ICollection<Property> Properties { set; get; } = new List<Property>();
+        public virtual ICollection<DataObject> DataObjects { set; get; }
     }
 }

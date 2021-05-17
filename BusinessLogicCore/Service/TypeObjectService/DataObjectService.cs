@@ -15,9 +15,9 @@ namespace BusinessLogicCore.Service.TypeObject
             _mapperProvider = mapperProvider;
         }
 
-        public List<> GetDataObjectAsync()
-        {
+        //public List<> GetDataObjectAsync()
+        //{
             
-        }
+        //}
     }
 }
