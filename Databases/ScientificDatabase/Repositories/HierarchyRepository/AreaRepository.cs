@@ -22,7 +22,7 @@ namespace ScientificDatabase.Repositories.HierarchyRepository
         /// <returns></returns>
         public async Task<Area> GetSectionAsync(int areaId)
         {
-            var sections =await ScientificContext.Area
+            var sections =await ScientificContext.Areas
                 .Include(x => x.Section)
                 .SingleOrDefaultAsync(x => x.Id == areaId);
             return sections;

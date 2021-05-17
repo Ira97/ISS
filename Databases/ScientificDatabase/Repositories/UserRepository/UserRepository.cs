@@ -15,7 +15,7 @@ namespace ScientificDatabase.Repositories.UserRepository
 
         public User GetUserAsync(string login, string hashPassword)
         {
-            var user = ScientificContext.User
+            var user = ScientificContext.Users
                 .Include(x => x.Role)
                 .Where(x => x.Login == login && x.Password == hashPassword).ToList().FirstOrDefault();
 

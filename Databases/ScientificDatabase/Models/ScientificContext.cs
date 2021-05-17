@@ -16,10 +16,10 @@ namespace ScientificDatabase.Models
         {
         }
 
-        public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Area> Area { set; get; }
-        public virtual DbSet<Section> Section { set; get; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Area> Areas { set; get; }
+        public virtual DbSet<Section> Sections { set; get; }
         public virtual DbSet<DataObject> DataObjects { set; get; }
         public virtual DbSet<Property> Properties { set; get; }
         public virtual DbSet<TypeObject.TypeObject> TypeObjects { set; get; }

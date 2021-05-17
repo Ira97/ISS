@@ -23,3 +23,8 @@
 /WebApi/WebApiCore/obj
 /WebApiHandlers/bin/Debug/netstandard2.0
 /WebApiHandlers/obj
+/BusinessLogicCore/bin/Debug/netstandard2.1
+/Databases/ScientificDatabase/bin/Debug/netstandard2.1
+/Middlewares/bin/Debug/netstandard2.1
+/Models/bin/Debug/netstandard2.1
+/WebApiHandlers/bin/Debug/netstandard2.1
