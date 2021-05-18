@@ -7,7 +7,7 @@ namespace ScientificDatabase.Repositories.TypeObjectRepositopy
 {
     public class ValueRepository: BaseRepository<ValuePropertyObject>
     {
-        protected ValueRepository(ScientificContext dbContext, ICacheManager<object> cacheManager, ILogger<BaseRepository<ValuePropertyObject>> logger) : base(dbContext, cacheManager, logger)
+        public ValueRepository(ScientificContext dbContext, ICacheManager<object> cacheManager, ILogger<BaseRepository<ValuePropertyObject>> logger) : base(dbContext, cacheManager, logger)
         {
         }
     }

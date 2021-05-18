@@ -8,6 +8,6 @@ namespace BusinessLogicCore.Service
     public interface ISectionService
     {
         Task<Result> CreateSectionAsync(SectionDto sectionDto);
-        Task<Result<List<SectionDto>>> GetSectionsAsync(int parentId);
+        Task<Result<MainSectionDto>> GetSectionsAsync(int id);
     }
 }

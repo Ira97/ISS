@@ -154,6 +154,10 @@ namespace WebApiCore
             services.AddScoped<ScientificDatabase.Repositories.UserRepository.RoleRepository>();
             services.AddScoped<ScientificDatabase.Repositories.HierarchyRepository.AreaRepository>();
             services.AddScoped<ScientificDatabase.Repositories.HierarchyRepository.SectionRepositopy>();
+            services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepository.TypeObjectRepository>();
+            services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepositopy.PropertiesRepository>();
+            services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepositopy.ValueRepository>();
+            services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepositopy.DataObjectRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc(option =>

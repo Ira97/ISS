@@ -1,4 +1,6 @@
-﻿namespace Models.ViewModels
+﻿using ScientificDatabase.Models.TypeObject;
+
+namespace Models.ViewModels
 {
     public class DataObjectDto
     {

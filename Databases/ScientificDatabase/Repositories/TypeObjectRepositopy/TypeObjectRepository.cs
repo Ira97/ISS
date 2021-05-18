@@ -3,11 +3,11 @@ using Microsoft.Extensions.Logging;
 using ScientificDatabase.Models;
 using ScientificDatabase.Models.TypeObject;
 
-namespace ScientificDatabase.Repositories.TypeObjectRepositopy
+namespace ScientificDatabase.Repositories.TypeObjectRepository
 {
-    public class TypeObjectRepositopy : BaseRepository<TypeObject>
+    public class TypeObjectRepository : BaseRepository<TypeObject>
     {
-        protected TypeObjectRepositopy(ScientificContext dbContext, ICacheManager<object> cacheManager, ILogger<BaseRepository<TypeObject>> logger) : base(dbContext, cacheManager, logger)
+        public TypeObjectRepository(ScientificContext dbContext, ICacheManager<object> cacheManager, ILogger<BaseRepository<TypeObject>> logger) : base(dbContext, cacheManager, logger)
         {
         }
     }

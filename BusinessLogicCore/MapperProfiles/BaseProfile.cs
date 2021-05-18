@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Models;
 using ScientificDatabase.Models.Hierarchy;
+using ScientificDatabase.Models.TypeObject;
 
 namespace BusinessLogicCore.MapperProfiles
 {
@@ -20,6 +21,10 @@ namespace BusinessLogicCore.MapperProfiles
             CreateMap<Area, AreaDto>();
             CreateMap<SectionDto, Section>();
             CreateMap<Section, SectionDto>();
+            CreateMap<TypeObjectDto, TypeObject>();
+            CreateMap<TypeObject, TypeObjectDto>();
+            CreateMap<MainSectionDto, Section>();
+            CreateMap<Section, MainSectionDto>();
         }
     }
 }

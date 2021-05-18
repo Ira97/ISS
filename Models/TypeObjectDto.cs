@@ -8,7 +8,12 @@ namespace Models
     {
         public string Name { set; get; }
         public int SectionId { set; get; }
-        public  List<PropertyDto> PropertyDtos { set; get; } = new List<PropertyDto>();
-        public  List<DataObjectDto> DataObjectDtos { set; get; } = new List<DataObjectDto>();
+        public  List<PropertyDto> PropertyDtos { set; get; }
+        public  List<DataObjectDto> DataObjectDtos { set; get; }
+        public TypeObjectDto()
+        {
+            PropertyDtos = new List<PropertyDto>();
+            DataObjectDtos = new List<DataObjectDto>();
+        }
     }
 }
