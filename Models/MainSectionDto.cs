@@ -10,6 +10,7 @@ namespace Models
         public int AresId { set; get;}
         public List<SectionDto> SectionDtos { set; get; }
         public List<TypeObjectDto> TypeObjectDtos { set; get; }
+        public List<DataObjectDto> DataObjectDtos { set; get; }
 
         public MainSectionDto()
         {

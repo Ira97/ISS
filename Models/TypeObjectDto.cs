@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Models.ViewModels;
 using ScientificDatabase.Models.TypeObject;
 
 namespace Models
