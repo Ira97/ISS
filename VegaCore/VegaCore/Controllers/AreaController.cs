@@ -21,7 +21,7 @@ namespace Vega.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var areaList = await _areaProvider.GetAreaListAsync();
+            var model = await _areaProvider.GetAreaListAsync();
             //var model = new AreaViewModel()
             //{
             //    AreaList = new List<AreaDto>
