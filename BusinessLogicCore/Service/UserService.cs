@@ -22,14 +22,24 @@ namespace BusinessLogicCore.Service
 
         public UserDto ValidateUserAsync(ValidateUserDto validateUser)
         {
-            var hashPassword = _hashProvider.HashMd5(validateUser.Password);
-            var user = _userRepository.GetUserAsync(validateUser.Login, hashPassword);
-            if (user != null)
+            try
             {
-                var mappedUser = _mapperProvider.CreateMapByProfile<ScientificDatabase.Models.User, UserDto, BaseProfile>(user);
-                return mappedUser;
+                var hashPassword = _hashProvider.HashMd5(validateUser.Password);
+                var user = _userRepository.GetUserAsync(validateUser.Login, hashPassword);
+                if (user != null)
+                {
+                    var mappedUser = _mapperProvider
+                        .CreateMapByProfile<ScientificDatabase.Models.User, UserDto, BaseProfile>(user);
+                    return mappedUser;
+                }
+
+                return new UserDto();
             }
-            return new UserDto();
+            catch (Exception exception)
+            {
+                return new UserDto();
+
+            }
         }
         public async Task RegisterUserAsync(RegisterUserDto registerUser)
         {

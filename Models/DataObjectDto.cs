@@ -7,6 +7,7 @@ namespace Models
     {
         public int Id { get; set; }
         public string Name { set; get; }
+        public int  TypeObjectId { set; get; }
         public virtual TypeObjectDto TypeObjectDto { set; get; }
         public List<ValuePropertyObjectDto> ValuePropertyObjectDtos { get; set; }
     }

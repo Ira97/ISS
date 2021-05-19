@@ -8,6 +8,7 @@ namespace Models
         public int Id { get; set; }
         public string Name { set; get; }
         public int SectionId { set; get; }
+        public  int TypeObjectId { set; get; }
         public  List<PropertyDto> PropertyDtos { set; get; }
         public  List<DataObjectDto> DataObjectDtos { set; get; }
         public TypeObjectDto()

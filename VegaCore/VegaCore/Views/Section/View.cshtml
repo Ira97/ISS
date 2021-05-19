@@ -19,7 +19,6 @@
             <a href="@Url.RouteUrl(new { controller = "Section", action = "View", id = sect.Id })" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">@sect.Name</h5>
-                    <small>Обновлено @sect.UpdateDateTime.ToShortDateString()</small>
                 </div>
                 <p class="mb-1">@sect.Description</p>
                 <small>Donec id elit non mi porta.</small>
@@ -33,7 +32,7 @@
                 <button data-toggle="modal" data-target="#searchModal" type="button" class="btn btn-warning col-sm-12 col-lg-auto">Отфильтровать</button>
             </div>
         </div>
-        @foreach (var group in Model.DataObjectDtos.GroupBy(x => x.TypeObjectDto.Id))
+        @foreach (var group in Model.DataObjectDtos.GroupBy(x => x.TypeObjectId))
         {
     <h2>@(group.ToList()[0].TypeObjectDto.Name)</h2>
             <div class="table-responsive table-striped">

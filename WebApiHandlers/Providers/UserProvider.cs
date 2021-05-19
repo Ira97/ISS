@@ -32,7 +32,7 @@ namespace WebApiHandlers.Providers
 
 
         /// <summary>
-        /// Получение Токена
+        /// Получение пользователя
         /// </summary>
         /// <returns></returns>
         public async Task<ApplicationUser> GetApplicationUserAsync(string userName, string password)

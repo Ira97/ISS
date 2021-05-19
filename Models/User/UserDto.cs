@@ -9,6 +9,6 @@ namespace Models.User
         public string Login { get; set; }
         public string Password { get; set; }
         public string Contact { get; set; }
-        public virtual Role Role { get; set; }
+        public virtual RoleDto Role { get; set; }
     }
 }
