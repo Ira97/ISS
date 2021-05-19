@@ -38,6 +38,7 @@ namespace Vega
             services.AddScoped<IAreaProvider, AreaProvider>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUserProvider, UserProvider>();
+            services.AddScoped<ISectionProvider, SectionProvider>();
            
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
             services.AddMemoryCache();
@@ -75,7 +76,7 @@ namespace Vega
             app.UseReact(config => { });
             app.UseEndpoints(endpoints => 
             {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"); 
+                endpoints.MapControllerRoute("default", "{controller=Area}/{action=Index}/{id?}"); 
             });
         }
     }
