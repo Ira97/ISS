@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Models;
+using Models.User;
 using ScientificDatabase.Models.Hierarchy;
 using ScientificDatabase.Models.TypeObject;
 
@@ -16,7 +17,7 @@ namespace BusinessLogicCore.MapperProfiles
     {
         public BaseProfile()
         {
-            CreateMap<ScientificDatabase.Models.User, Models.User.User>();
+            CreateMap<User, UserDto>();
             CreateMap<AreaDto, Area>();
             CreateMap<Area, AreaDto>();
             CreateMap<SectionDto, Section>();

@@ -18,7 +18,6 @@ namespace ScientificDatabase.Repositories.UserRepository
             var user = ScientificContext.Users
                 .Include(x => x.Role)
                 .Where(x => x.Login == login && x.Password == hashPassword).ToList().FirstOrDefault();
-
             return user;
         }
     }

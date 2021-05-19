@@ -20,16 +20,16 @@ namespace BusinessLogicCore.Service
             _hashProvider = hashProvider;
         }
 
-        public async Task<User> ValidateUserAsync(ValidateUserDto validateUser)
+        public UserDto ValidateUserAsync(ValidateUserDto validateUser)
         {
             var hashPassword = _hashProvider.HashMd5(validateUser.Password);
             var user = _userRepository.GetUserAsync(validateUser.Login, hashPassword);
             if (user != null)
             {
-                var mappedUser = _mapperProvider.CreateMapByProfile<ScientificDatabase.Models.User, User, BaseProfile>(user);
+                var mappedUser = _mapperProvider.CreateMapByProfile<ScientificDatabase.Models.User, UserDto, BaseProfile>(user);
                 return mappedUser;
             }
-            return new User();
+            return new UserDto();
         }
         public async Task RegisterUserAsync(RegisterUserDto registerUser)
         {
@@ -40,7 +40,7 @@ namespace BusinessLogicCore.Service
                     var user = new ScientificDatabase.Models.User
                     {
                         Login = registerUser.Login,
-                        Password = _hashProvider.HashMd5(registerUser.Password),
+                        Password =  _hashProvider.HashMd5(registerUser.Password),
                         FullName = registerUser.FullName,
                         Contact = registerUser.Contact,
                         RoleId = 3

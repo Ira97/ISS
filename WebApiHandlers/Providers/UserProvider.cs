@@ -44,7 +44,7 @@ namespace WebApiHandlers.Providers
                     Login = userName,
                     Password = password
                 };
-                var user = await _httpClientProvider.SendHttpPostWithResponse<User>(validateUser, "user/validate");
+                var user = await _httpClientProvider.SendHttpPostWithResponse<UserDto>(validateUser, "user/validate");
                 if (user.Id != null)
                 {
                     var applicationUser = new ApplicationUser

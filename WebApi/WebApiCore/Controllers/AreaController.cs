@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogicCore.Service;
 using FluentResults;
@@ -37,34 +38,37 @@ namespace WebApiCore.Controllers
         [ProducesResponseType(typeof(List<AreaDto>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         [HttpGet("list")]
-        public async Task<Result<List<AreaDto>>> GetAreasAsync()
+        public async Task<List<AreaDto>> GetAreasAsync()
         {
-           var result =  await _areaService.GetAreasAsync();
-           if (result.IsFailed)
-               return result;
-           return Result.Ok(result.Value);
+            var result = await _areaService.GetAreasAsync();
+            if (result.IsFailed)
+                return result.Value;
+            return result.Value;
         }
-        
+
         [ProducesResponseType(typeof(List<AreaDto>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         [HttpGet("{areaId}")]
         public async Task<AreaDto> GetAreaAsync([FromRoute] int areaId)
         {
-            var result =  await _areaService.GetSectionsForAreaAsync(areaId);
-                if (result.IsFailed)
-                    return result.Value;
-                return result.Value;
+            var area = await _areaService.GetSectionsForAreaAsync(areaId);
+
+            if (area.IsFailed)
+                return area.Value;
+            var a = area.Value.Section.Where(x => x.ParentId == 0).ToList();
+            area.Value.Section =  a;
+            return area.Value;
         }
-        
+
         [ProducesResponseType(typeof(List<AreaDto>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         [HttpPost("create")]
         public async Task<Result> CreateAreaAsync([FromBody] AreaDto areaDto)
         {
-            var result =  await _areaService.CreateAreaAsync(areaDto);
+            var result = await _areaService.CreateAreaAsync(areaDto);
             if (result.IsFailed)
                 return result;
-            
+
             return Result.Ok();
         }
     }

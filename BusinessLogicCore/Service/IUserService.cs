@@ -5,7 +5,7 @@ namespace BusinessLogicCore.Service
 {
     public interface IUserService
     {
-        Task<User> ValidateUserAsync(ValidateUserDto validateUser);
+        UserDto ValidateUserAsync(ValidateUserDto validateUser);
         Task RegisterUserAsync(RegisterUserDto registerUser);
     }
 }

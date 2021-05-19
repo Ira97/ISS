@@ -50,9 +50,9 @@ namespace WebApiCore.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("validate")]
-        public async Task<User> ValidateUserAsync([FromBody] ValidateUserDto validateUser)
+        public UserDto ValidateUserAsync([FromBody] ValidateUserDto validateUser)
         {
-              return await _userService.ValidateUserAsync(validateUser);
+              return  _userService.ValidateUserAsync(validateUser);
         }
     }
 }
