@@ -11,15 +11,15 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApiCore.Controllers
 {
-    [Route("api/sections")]
+    [Route("api/section")]
     [ApiController]
     [AllowAnonymous]
     [SwaggerTag("Контроллер работы с областями")]
-    public class SectionsControllers: BaseApiController
+    public class SectionControllers: BaseApiController
     {
         private readonly ISectionService _sectionService;
 
-        public SectionsControllers(IHttpContextAccessor contextAccessor, ILogger<BaseApiController> logger,
+        public SectionControllers(IHttpContextAccessor contextAccessor, ILogger<BaseApiController> logger,
             ISectionService sectionService) : base(contextAccessor, logger)
         {
             _sectionService = sectionService;
@@ -38,7 +38,7 @@ namespace WebApiCore.Controllers
         
         [ProducesResponseType(typeof(List<SectionDto>), 200)]
         [ProducesResponseType(typeof(string), 400)]
-        [HttpPost("/create")]
+        [HttpPost("create")]
         public async Task<Result> AddSectionAsync([FromBody] SectionDto sectionDto)
         {
             var result = await _sectionService.CreateSectionAsync(sectionDto);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using WebApiHandlers.Interfaces;
 
 namespace Vega.Controllers
 {
+    [Authorize(Roles = "Administrator,Expert,User")]
     public class SectionController : Controller
     {
         private readonly ISectionProvider _sectionProvider;
