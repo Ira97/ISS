@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.ViewModels;
@@ -9,6 +10,7 @@ using WebApiHandlers.Interfaces;
 
 namespace Vega.Controllers
 {
+    [Authorize(Roles = "Administrator,Expert,User")]
     public class AreaController : Controller
     {
         private readonly IAreaProvider _areaProvider;
