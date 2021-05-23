@@ -56,48 +56,60 @@ namespace BusinessLogicCore.Service
             try
             {
                 var mainSection = await _sectionRepositopy.GetItemAsync(id);
-                var result = await _sectionRepositopy.GetListAsync(x => x.ParentId == id);
-                var typeObject =
-                    await _typeObjectRepositopy.GetListAsync(x => x.SectionId == result.FirstOrDefault().Id);
-                var mapMainSection = _mapperProvider.CreateMap<Section, MainSectionDto>(mainSection);
-                var listvalue = new List<ValuePropertyObject>();
-                var listObj = await _dataObjectRepository.GetItemAsync(x => x.TypeObjectId == typeObject.FirstOrDefault().Id);
-
-                var resultValue = await _valueRepository.GetListAsync(x => x.DataObjectId == listObj.Id);
-                    listvalue.AddRange(resultValue);
-
-                    mapMainSection.SectionDtos = _mapperProvider.CreateMapForList<Section, SectionDto>(result);
-                mapMainSection.TypeObjectDtos =
-                    _mapperProvider.CreateMapForList<ScientificDatabase.Models.TypeObject.TypeObject, TypeObjectDto>(
-                        typeObject);
-                var list = new List<DataObject>();
-                list.Add(listObj);
-
-                mapMainSection.DataObjectDtos = _mapperProvider.CreateMapForList<DataObject, DataObjectDto>(list);
-                TypeObjectDto typeObject1 = null;
-                foreach (var data in list)
+                var listSection = await _sectionRepositopy.GetListAsync(x => x.ParentId == id);
+                var typeObjectList =
+                    await _typeObjectRepositopy.GetListAsync(x => x.SectionId == listSection.FirstOrDefault().Id);
+                var dataObjects = new List<DataObject>();
+                var properties = new List<Property>();
+                foreach (var typeObject in typeObjectList)
                 {
-                    var d = data.TypeObject;
-                    typeObject1 = _mapperProvider
-                        .CreateMapByProfile<ScientificDatabase.Models.TypeObject.TypeObject, TypeObjectDto,
-                            BaseProfile>(d);
-                    var value =
-                        _mapperProvider.CreateMapForList<ValuePropertyObject, ValuePropertyObjectDto>(
-                            data.ValuePropertyObjects);
-                    var v = mapMainSection.DataObjectDtos.Where(x => x.Id == data.Id);
-                    v.FirstOrDefault().ValuePropertyObjectDtos = value;
-                    v.FirstOrDefault().TypeObjectDto = typeObject1;
-
-                    foreach (var b in data.ValuePropertyObjects)
-                    {
-                        b.Property = await _propertiesRepository.GetItemAsync(b.PropertyId);
-                        v.FirstOrDefault().ValuePropertyObjectDtos.ForEach(x =>
-                            x.Property = _mapperProvider.CreateMap<Property, PropertyDto>(b.Property));
-                    }
-
-                    return Result.Ok(mapMainSection);
-
+                    dataObjects.AddRange(
+                        await _dataObjectRepository.GetListAsync(x => x.TypeObjectId == typeObject.Id));
+                    properties.AddRange(await _propertiesRepository.GetPropertyListAsync());
                 }
+
+                var valueForDataObject = new List<ValuePropertyObject>();
+                foreach (var dataObject in dataObjects)
+                {
+                    valueForDataObject.AddRange(await  _valueRepository.GetListAsync(x=>x.DataObjectId== dataObject.Id));
+                }
+                
+                var mapMainSection = _mapperProvider.CreateMap<Section, MainSectionDto>(mainSection);
+
+                // var resultValue = await _valueRepository.GetListAsync(x => x.DataObjectId == listObj.Id);
+                // // dataObjects.AddRange(resultValue);
+                // //
+                // mapMainSection.SectionDtos = _mapperProvider.CreateMapForList<Section, SectionDto>(listSection);
+                // mapMainSection.TypeObjectDtos =
+                //     _mapperProvider.CreateMapForList<ScientificDatabase.Models.TypeObject.TypeObject, TypeObjectDto>(
+                //         typeObjectList);
+                // var list = new List<DataObject>();
+                // list.Add(listObj);
+                //
+                // mapMainSection.DataObjectDtos = _mapperProvider.CreateMapForList<DataObject, DataObjectDto>(list);
+                // TypeObjectDto typeObject1 = null;
+                // foreach (var data in list)
+                // {
+                //     var d = data.TypeObject;
+                //     typeObject1 = _mapperProvider
+                //         .CreateMapByProfile<ScientificDatabase.Models.TypeObject.TypeObject, TypeObjectDto,
+                //             BaseProfile>(d);
+                //     var value =
+                //         _mapperProvider.CreateMapForList<ValuePropertyObject, ValuePropertyObjectDto>(
+                //             data.ValuePropertyObjects);
+                //     var v = mapMainSection.DataObjectDtos.Where(x => x.Id == data.Id);
+                //     v.FirstOrDefault().ValuePropertyObjectDtos = value;
+                //     v.FirstOrDefault().TypeObjectDto = typeObject1;
+                //
+                //     foreach (var b in data.ValuePropertyObjects)
+                //     {
+                //         b.Property = await _propertiesRepository.GetItemAsync(b.PropertyId);
+                //         v.FirstOrDefault().ValuePropertyObjectDtos.ForEach(x =>
+                //             x.Property = _mapperProvider.CreateMap<Property, PropertyDto>(b.Property));
+                //     }
+
+                //     return Result.Ok(mapMainSection);
+                // }
 
                 return Result.Ok(mapMainSection);
             }
