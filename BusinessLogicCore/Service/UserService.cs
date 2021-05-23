@@ -69,5 +69,7 @@ namespace BusinessLogicCore.Service
         {
             return await _userRepository.GetItemAsync(x => x.Login == login);
         }
+
+     
     }
 }

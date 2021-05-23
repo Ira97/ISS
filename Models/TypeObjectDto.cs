@@ -9,12 +9,12 @@ namespace Models
         public string Name { set; get; }
         public int SectionId { set; get; }
         public  int TypeObjectId { set; get; }
-        public  List<PropertyDto> PropertyDtos { set; get; }
-        public  List<DataObjectDto> DataObjectDtos { set; get; }
+        public  List<PropertyDto> Properties { set; get; }
+        public  List<DataObjectDto> DataObjects{ set; get; }
         public TypeObjectDto()
         {
-            PropertyDtos = new List<PropertyDto>();
-            DataObjectDtos = new List<DataObjectDto>();
+            Properties = new List<PropertyDto>();
+            DataObjects = new List<DataObjectDto>();
         }
     }
 }

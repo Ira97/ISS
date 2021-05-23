@@ -10,7 +10,7 @@ using WebApiHandlers.Interfaces;
 
 namespace Vega.Controllers
 {
-    [Authorize(Roles = "Administrator,Expert,User")]
+    //[Authorize(Roles = "Administrator,Expert,User")]
     public class AreaController : Controller
     {
         private readonly IAreaProvider _areaProvider;

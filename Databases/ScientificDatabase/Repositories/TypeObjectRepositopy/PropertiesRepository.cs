@@ -15,9 +15,9 @@ namespace ScientificDatabase.Repositories.TypeObjectRepositopy
         {
         }
 
-        public async Task<IEnumerable<Property>> GetPropertyListAsync()
-        {
-            var list = ScientificContext.Properties.Include(x => x.TypeObjects).Where(x => x.)
-        }
+        //public async Task<IEnumerable<Property>> GetPropertyListAsync()
+        //{
+        //    var list = ScientificContext.Properties.Include(x => x.TypeObjects).Where(x => x.)
+        //}
     }
 }

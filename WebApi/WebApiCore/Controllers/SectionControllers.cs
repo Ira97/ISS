@@ -28,7 +28,7 @@ namespace WebApiCore.Controllers
         [ProducesResponseType(typeof(List<SectionDto>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         [HttpGet("{parentId}")]
-        public async Task<MainSectionDto> GetAreaAsync([FromRoute] int parentId)
+        public async Task<MainSectionDto> GetSectionAsync([FromRoute] int parentId)
         {
             var result = await _sectionService.GetSectionsAsync(parentId);
             if (result.IsFailed)
