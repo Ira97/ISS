@@ -1,0 +1,21 @@
+﻿@model Models.Search.SearchResult
+@{
+    ViewBag.Title = "Поиск";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Результаты поиска</h1>
+
+<div class="list-group">
+    @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+    {
+        <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@entry.Name</h5>
+                <small>3 дня назад</small>
+            </div>
+            <p class="mb-1">@entry.Description</p>
+            <small></small>
+        </a>
+    }
+</div>

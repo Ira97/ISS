@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -10,6 +11,7 @@ namespace Models
         public int AresId { set; get;}
         public List<SectionDto> SectionDtos { set; get; }
         public List<TypeObjectDto> TypeObjects { set; get; }
+        public List<ResearchDto> Researches { get; set; }
 
         public MainSectionDto()
         {

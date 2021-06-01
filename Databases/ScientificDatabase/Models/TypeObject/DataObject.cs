@@ -8,5 +8,6 @@ namespace ScientificDatabase.Models.TypeObject
         public  int TypeObjectId { set; get; }
         public virtual TypeObject TypeObject { set; get; }
         public List<ValuePropertyObject> ValuePropertyObjects { get; set; }
+        public ICollection<Research> Researches { get; set; }
     }
 }

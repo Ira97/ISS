@@ -46,7 +46,7 @@ namespace WebApiCore.Controllers
             return result.Value;
         }
 
-        [ProducesResponseType(typeof(List<AreaDto>), 200)]
+        [ProducesResponseType(typeof(AreaDto), 200)]
         [ProducesResponseType(typeof(string), 400)]
         [HttpGet("{areaId}")]
         public async Task<AreaDto> GetAreaAsync([FromRoute] int areaId)

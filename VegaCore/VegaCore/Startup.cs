@@ -39,6 +39,7 @@ namespace Vega
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUserProvider, UserProvider>();
             services.AddScoped<ISectionProvider, SectionProvider>();
+            services.AddScoped<ISearchProvider, SearchProvider>();
            
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
             services.AddMemoryCache();

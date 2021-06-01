@@ -29,9 +29,6 @@
         }
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-
-
         @if (Model.TypeObjects != null)
         {
             <div class="accordion" id="accordionExample">
@@ -70,7 +67,6 @@
                                         <tbody id="mainTableBody">
                                             @foreach (var dataObject in typeObject.DataObjects)
                                             {
-
                                                 <tr>
                                                     <td>@Html.ActionLink(dataObject.Id.ToString(), "View", new { @id = dataObject.Id })</td>
                                                     <td>@Html.ActionLink(dataObject.Name ?? " ", "View", new { @id = dataObject.Id })</td>
@@ -90,6 +86,34 @@
             </div>
         }
     </div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="row">
+            <div class="mb-3 col-lg-12">
+                <a href="@Url.Action("index", "Area")">
+                    <button type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0">Добавить</button>
+                </a>
+            </div>
+        </div>
+        @if (Model.Researches != null)
+        {
+            @foreach (var research in Model.Researches)
+            {
+                var dataObjectString = string.Empty;
+                @foreach (var dataObject in research.DataObjects)
+                {
+                    dataObjectString += $"{dataObject.Name} ";
+                }
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">@research.Title</h5>
+                    </div>
+                    <p class="mb-1">@research.Description</p>
+                    <p class="mb-1">Объекты ииследования: @dataObjectString</p>
+                    <small>@research.Author</small>
+                </a>
+
+            }
+        }
+    </div>
     <div class="tab-pane fade" id="nav-test" role="tabpanel" aria-labelledby="nav-test-tab">...</div>
 </div>

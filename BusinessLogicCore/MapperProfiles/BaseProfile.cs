@@ -30,6 +30,7 @@ namespace BusinessLogicCore.MapperProfiles
             CreateMap<DataObject, DataObjectDto>();
             CreateMap<Property, PropertyDto>();
             CreateMap<ValuePropertyObject, ValuePropertyObjectDto>();
+            CreateMap<Research, ResearchDto>();
 
         }
     }

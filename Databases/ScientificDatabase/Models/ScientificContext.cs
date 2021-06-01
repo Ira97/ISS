@@ -24,6 +24,7 @@ namespace ScientificDatabase.Models
         public virtual DbSet<Property> Properties { set; get; }
         public virtual DbSet<TypeObject.TypeObject> TypeObjects { set; get; }
         public virtual DbSet<ValuePropertyObject> ValuePropertyObjects { set; get; }
+        public virtual DbSet<Research> Researches { set; get; }
 
         /// <summary>
         /// Страка подключения используемая при миграции базы данных
@@ -33,7 +34,7 @@ namespace ScientificDatabase.Models
         {
             //if (!optionsBuilder.IsConfigured)
             //{
-            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS01;Database=Scientific;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=Scientific;Trusted_Connection=True;MultipleActiveResultSets=true");
             //}
         }
 

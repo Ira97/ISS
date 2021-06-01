@@ -15,6 +15,7 @@ namespace ScientificDatabase.Models.Hierarchy
         public int AreaId { set; get;}
         public int ParentId { set; get;}
         public  virtual List<TypeObject.TypeObject> TypeObjects { set; get; }
+        public virtual ICollection<Research> Researches { set; get; }
     }
     
 }

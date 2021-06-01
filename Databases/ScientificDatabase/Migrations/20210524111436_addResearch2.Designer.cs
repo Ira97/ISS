@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScientificDatabase.Models;
 
 namespace ScientificDatabase.Migrations
 {
     [DbContext(typeof(ScientificContext))]
-    partial class ScientificContextModelSnapshot : ModelSnapshot
+    [Migration("20210524111436_addResearch2")]
+    partial class addResearch2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,17 +108,8 @@ namespace ScientificDatabase.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Method")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Object")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("SectionId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Thing")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

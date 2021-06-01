@@ -7,6 +7,7 @@ using AutoMapper;
 using BusinessLogicCore.Controllers;
 using BusinessLogicCore.Interfaces;
 using BusinessLogicCore.Service;
+using BusinessLogicCore.Service.Search;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -20,6 +21,8 @@ using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using MiddleWares;
 using ScientificDatabase.Models;
+using ScientificDatabase.Repositories;
+using ScientificDatabase.Repositories.TypeObjectRepositopy;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using WebApiHandlers.Interfaces;
 using WebApiHandlers.Providers;
@@ -147,6 +150,7 @@ namespace WebApiCore
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAreaService, AreaService>();
             services.AddScoped<ISectionService, SectionService>();
+            services.AddScoped<ISearchService, SearchService>();
 
             //Репозитории 
 
@@ -155,9 +159,10 @@ namespace WebApiCore
             services.AddScoped<ScientificDatabase.Repositories.HierarchyRepository.AreaRepository>();
             services.AddScoped<ScientificDatabase.Repositories.HierarchyRepository.SectionRepositopy>();
             services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepository.TypeObjectRepository>();
-            services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepositopy.PropertiesRepository>();
-            services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepositopy.ValueRepository>();
-            services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepositopy.DataObjectRepository>();
+            services.AddScoped<PropertiesRepository>();
+            services.AddScoped<ValueRepository>();
+            services.AddScoped<DataObjectRepository>();
+            services.AddScoped<ResearchRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc(option =>

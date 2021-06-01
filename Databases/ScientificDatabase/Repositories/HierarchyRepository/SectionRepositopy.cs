@@ -25,6 +25,8 @@ namespace ScientificDatabase.Repositories.HierarchyRepository
                 Include(s => s.TypeObjects).
                 ThenInclude(t => t.DataObjects).
                 ThenInclude(d => d.ValuePropertyObjects).
+                Include(s => s.Researches).
+                ThenInclude(r => r.DataObjects).
                 ToList().
                 SingleOrDefault(s => s.Id == id);
             return section;
