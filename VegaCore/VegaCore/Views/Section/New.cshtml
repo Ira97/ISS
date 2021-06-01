@@ -1,0 +1,29 @@
+﻿
+@model Models.ViewModels.SectionViewModel
+
+@{
+    ViewBag.Title = "Создание раздела";
+    Layout = "_Layout";
+}
+
+<div class="d-flex justify-content-center">
+    @using (Html.BeginForm("New", "Section", FormMethod.Post, new { role = "form", @class = "col-lg-7" }))
+    {
+        <h1>Создание раздела</h1>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.ParentId, new { @value = Model.Section.ParentId })
+        <div class="form-group">
+            <label>Название*</label>
+            @Html.TextBoxFor(m => m.Section.Name, new { placeholder = "Введие название раздела", @required = true, @class = "form-control is-invalid", @value = Model.Section.Name })
+            @Html.ValidationMessageFor(m => m.Section.Name)
+        </div>
+     
+        <div class="form-group">
+            <label>Описание*</label>
+            @Html.TextAreaFor(m => m.Section.Description, new { placeholder = "Введите описание раздела", @required = true, @class = "form-control", @value = Model.Section.Description, rows = 5 })
+            @Html.ValidationMessageFor(m => m.Section.Description)
+        </div>
+       
+        <button type="submit" class="btn btn-primary" id="btnSubmit">Сохранить</button>
+    }
+</div>

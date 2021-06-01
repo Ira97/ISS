@@ -23,5 +23,6 @@ namespace ScientificDatabase.Models
         public string Method { get; set; }
         public ICollection<DataObject> DataObjects { get; set; }
         public Section Section { get; set; }
+        public int SectionId { get; set; }
     }
 }
