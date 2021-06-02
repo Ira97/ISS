@@ -9,6 +9,7 @@ namespace ScientificDatabase.Models.Hierarchy
     {
         public string Name { set; get; }
         public virtual List<Section> Section { set; get; }
+        public string ImageName { get; set; }
         public Area()
         {
             Section = new List<Section>();
