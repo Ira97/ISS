@@ -10,5 +10,19 @@ namespace Models
         public string Description { get; set; }
         public string Author { get; set; }
         public List<DataObjectDto> DataObjects { get; set; }
+        public int SectionId { get; set; }
+        /// <summary>
+        /// Предмет
+        /// </summary>
+        public string Thing { get; set; }
+        /// <summary>
+        /// Объект
+        /// </summary>
+        public string Object { get; set; }
+        /// <summary>
+        /// Метод
+        /// </summary>
+        public string Method { get; set; }
+        public List<int> SelectedObjectList { get; set; }
     }
 }
