@@ -1,0 +1,26 @@
+﻿@model Models.DataObjectDto
+@{
+    ViewBag.Title = "Создание объекта";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="d-flex justify-content-center">
+    @using (Html.BeginForm("New", "DataObject", FormMethod.Post, new { role = "form", @class = "col-lg-7" }))
+    {
+        <h1>Создание области науки</h1>
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            <label>Название*</label>
+            @Html.TextBoxFor(m => m.Name, new { placeholder = "Введите название", @required = true, @class = "form-control", @value = Model.Name })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        @foreach (var property in Model.TypeObject.Properties)
+        {
+            <div class="form-group">
+                <label>@property.Name</label>
+                @Html.TextBoxFor(m => m.ValuePropertyObjects, new { placeholder = "", @required = true, @class = "form-control", @value = Model.Name })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        }
+        <button type="submit" class="btn btn-primary" id="btnSubmit">Сохранить</button>
+    }
+</div>

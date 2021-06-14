@@ -104,5 +104,14 @@ namespace WebApiCore.Controllers
             var result = await _sectionService.GetPropertyListAsync();
             return result.ValueOrDefault;
         }
+
+        [ProducesResponseType(typeof(List<PropertyDto>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [HttpGet("type/{id}")]
+        public async Task<TypeObjectDto> GetTypeObjectAsync([FromRoute] int id)
+        {
+            var result = await _sectionService.GetTypeObjectAsync(id);
+            return result.ValueOrDefault;
+        }
     }
 }

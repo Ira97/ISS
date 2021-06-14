@@ -1,0 +1,57 @@
+﻿@model Models.TypeObjectDto
+@{
+    ViewBag.Title = "Создание типа объекта";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="d-flex justify-content-center">
+    @using (Html.BeginForm("New", "TypeObject", FormMethod.Post, new { role = "form", @class = "col-lg-7" }))
+    {
+        <h1>Создание области науки</h1>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.PropertyCount)
+        <div class="form-group">
+            <label>Название*</label>
+            @Html.TextBoxFor(m => m.Name, new { placeholder = "Введие название", @required = true, @class = "form-control is-invalid", @value = Model.Name })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div id="advanced-property-group">
+            <label>Связанные свойства</label>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="addProperty()">Добавить</button>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnSubmit">Сохранить</button>
+    }
+</div>
+<script>
+    function addProperty() {
+        var count = $("#PropertyCount").val();
+        const group = document.getElementById(`advanced-property-group`);
+        group.insertAdjacentHTML('beforeend',
+            `<div class="form-row" id="advanced-property-row${count}">
+                <div class="form-group col-5">
+                    <input class="form-control" name="CouponRule.CouponRuleNeedConditionValues[${count}].Value" placeholder="Введите наименование" type="text">
+                </div>
+                <div class="form-group col-6">
+                    <input name="CouponRule.CouponRuleNeedConditionValues[${count}].CouponRuleId" hidden/>
+                    <input class="form-control" name="CouponRule.CouponRuleNeedConditionValues[${count}].Value" placeholder="Введите значение" type="text">
+                </div>
+                <div class="form-group col-1 cross-container">
+                    <button type="button" class="close" aria-label="Close" onclick="deleteProperty()">
+                    <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            </div>`);
+        count++;
+        $("#PropertyCount").val(count);
+    }
+
+    function deleteProperty() {
+        var count = $("#PropertyCount").val();
+        count--;
+        const original = document.getElementById(`advanced-property-row${count}`);
+        original.remove();
+        $("#PropertyCount").val(count);
+    };
+
+</script>

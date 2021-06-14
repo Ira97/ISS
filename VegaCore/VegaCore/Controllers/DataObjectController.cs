@@ -27,7 +27,9 @@ namespace Vega.Controllers
         [HttpGet]
         public async Task<IActionResult> New(int typeObjectId)
         {
+
             var model = new DataObjectDto { TypeObjectId = typeObjectId};
+            model.TypeObject = await _sectionProvider.GetTypeObject(typeObjectId);
             return View(model);
         }
 

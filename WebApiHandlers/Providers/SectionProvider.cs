@@ -59,5 +59,10 @@ namespace WebApiHandlers.Providers
         {
             throw new NotImplementedException();
         }
+
+        public async Task<TypeObjectDto> GetTypeObject(int typeObjectId)
+        {
+            return await _httpClientProvider.SendHttpGetRequest<TypeObjectDto>($"section/type/{typeObjectId}");
+        }
     }
 }

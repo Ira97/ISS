@@ -52,7 +52,7 @@
             {
                 <div class="row">
                     <div class="mb-3 mt-3 col-lg-12">
-                        <a href="@Url.Action("New", "", new { @parentId = Model.Id })">
+                        <a href="@Url.Action("New", "TypeObject", new { @parentId = Model.Id })">
                             <input value="Добавить тип объекта" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
                         </a>
                     </div>
@@ -74,7 +74,9 @@
                                     <h2>@typeObject.Name</h2>
                                     <div class="row">
                                         <div class="mb-3 col-lg-12">
-                                            <button data-toggle="modal" data-target="#viewModal" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0">Добавить объект</button>
+                                            <a href="@Url.Action("New", "DataObject", new { @typeObjectId = @typeObject.Id})">
+                                                <input value="Добавить объект" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
+                                            </a>
                                             <button data-toggle="modal" data-target="#searchModal" type="button" class="btn btn-warning col-sm-12 col-lg-auto">Отфильтровать</button>
                                         </div>
                                     </div>

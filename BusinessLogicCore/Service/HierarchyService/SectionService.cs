@@ -11,6 +11,7 @@ using ScientificDatabase.Models.TypeObject;
 using ScientificDatabase.Repositories;
 using ScientificDatabase.Repositories.HierarchyRepository;
 using ScientificDatabase.Repositories.TypeObjectRepositopy;
+using ScientificDatabase.Repositories.TypeObjectRepository;
 
 namespace BusinessLogicCore.Service
 {
@@ -20,16 +21,18 @@ namespace BusinessLogicCore.Service
         private PropertiesRepository _propertiesRepository;
         private ResearchRepository _researchRepository;
         private DataObjectRepository _dataObjectRepository;
+        private TypeObjectRepository _typeObjectRepository;
         private IMapperProvider _mapperProvider;
 
         public SectionService(SectionRepositopy sectionRepositopy,
-            IMapperProvider mapperProvider, ResearchRepository researchRepository, DataObjectRepository dataObjectRepository, PropertiesRepository propertiesRepository)
+            IMapperProvider mapperProvider, ResearchRepository researchRepository, DataObjectRepository dataObjectRepository, PropertiesRepository propertiesRepository, TypeObjectRepository typeObjectRepository)
         {
             _sectionRepositopy = sectionRepositopy;
             _mapperProvider = mapperProvider;
             _researchRepository = researchRepository;
             _dataObjectRepository = dataObjectRepository;
             _propertiesRepository = propertiesRepository;
+            _typeObjectRepository = typeObjectRepository;
         }
 
         public async Task<Result> CreateSectionAsync(SectionDto sectionDto)
@@ -55,6 +58,7 @@ namespace BusinessLogicCore.Service
                 var mapMainSection = _mapperProvider.CreateMapByProfile<Section, MainSectionDto, BaseProfile>(mainSection);
                 var mappedSectionList = _mapperProvider.CreateMapForList<Section, SectionDto>(listSection);
                 mapMainSection.SectionDtos = mappedSectionList;
+                mapMainSection.TypeObjects.ForEach(x => x.DataObjects.ForEach(y => y.TypeObject = null));
                 return Result.Ok(mapMainSection);
             }
             catch (Exception ex)
@@ -114,6 +118,13 @@ namespace BusinessLogicCore.Service
         {
             var list = await _sectionRepositopy.GetItemsAsync();
             var mappedList = _mapperProvider.CreateMapForList<Section, SectionDto>(list);
+            return Result.Ok(mappedList);
+        }
+
+        public async Task<Result<TypeObjectDto>> GetTypeObjectAsync(int id)
+        {
+            var item = await _typeObjectRepository.GetTypeObjectAsync(id);
+            var mappedList = _mapperProvider.CreateMapByProfile<ScientificDatabase.Models.TypeObject.TypeObject, TypeObjectDto, BaseProfile>(item);
             return Result.Ok(mappedList);
         }
 

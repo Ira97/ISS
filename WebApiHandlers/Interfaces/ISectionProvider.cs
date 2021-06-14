@@ -1,4 +1,5 @@
 ﻿using Models;
+using ScientificDatabase.Models.TypeObject;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,5 +17,6 @@ namespace WebApiHandlers.Interfaces
         Task CreateSectionAsync(SectionDto section);
         Task CreateTypeObjectAsync(TypeObjectDto typeObject);
         Task CreateDataObjectAsync(DataObjectDto dataObject);
+        Task<TypeObjectDto> GetTypeObject(int typeObjectId);
     }
 }

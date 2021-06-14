@@ -15,5 +15,6 @@ namespace BusinessLogicCore.Service
         Task<Result<List<MethodDto>>> GetMethodListAsync();
         Task<Result<List<DataObjectDto>>> GetDataObjectListAsync();
         Task<Result<List<SectionDto>>> GetSectionListAsync();
+        Task<Result<TypeObjectDto>> GetTypeObjectAsync(int id);
     }
 }
