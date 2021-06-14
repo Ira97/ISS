@@ -34,5 +34,12 @@ namespace Vega.Controllers
             };
             return View(sectionViewModel);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> New(Models.SectionDto section)
+        {
+            await _sectionProvider.CreateSectionAsync(section);
+            return RedirectToAction("View", section.ParentId);
+        }
     }
 }

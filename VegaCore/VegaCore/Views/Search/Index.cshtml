@@ -4,18 +4,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Результаты поиска</h1>
 
-<div class="list-group">
-    @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+<div class="d-flex">
+    @using (Html.BeginForm("Index", "Search", FormMethod.Post, new { role = "form", @class = "col-lg-7" }))
     {
-        <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">@entry.Name</h5>
-                <small>3 дня назад</small>
-            </div>
-            <p class="mb-1">@entry.Description</p>
-            <small></small>
-        </a>
+        <h1>Расширенный поиск</h1>
+        <div class="form-group">
+            <label>Искать по названию</label>
+            @Html.TextBoxFor(m => m.SearchRequest.Title, new { placeholder = "", @required = true, @class = "form-control", @value = Model.SearchRequest.Title })
+        </div>
+        <div class="form-group">
+            <label>Искать по авторам</label>
+            @Html.TextBoxFor(m => m.SearchRequest.Title, new { placeholder = "", @required = true, @class = "form-control", @value = Model.SearchRequest.Title })
+        </div>
+        <div class="form-group">
+            <label>Выберите разделы</label>
+            @Html.ListBoxFor(m => m.SearchRequest.SelectedSectionList, new MultiSelectList(Model.SectionList, "Id", "Name", Model.SearchRequest.SelectedSectionList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+        </div>
+        <div class="form-group">
+            <label>Выберите объекты</label>
+            @Html.ListBoxFor(m => m.SearchRequest.SelectedObjectList, new MultiSelectList(Model.DataObjectList, "Id", "Name", Model.SearchRequest.SelectedObjectList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+        </div>
+        <div class="form-group">
+            <label>Выберите свойства</label>
+            @Html.ListBoxFor(m => m.SearchRequest.SelectedPropertyList, new MultiSelectList(Model.PropertyList, "Id", "Name", Model.SearchRequest.SelectedPropertyList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+        </div>
+        <div class="form-group">
+            <label>Выберите методы</label>
+            @Html.ListBoxFor(m => m.SearchRequest.SelectedMethodList, new MultiSelectList(Model.MethodList, "Id", "Name", Model.SearchRequest.SelectedMethodList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+        </div>
+        <div class="form-group">
+            <label>Выберите предметы</label>
+            @Html.ListBoxFor(m => m.SearchRequest.SelectedThingList, new MultiSelectList(Model.ThingList, "Id", "Name", Model.SearchRequest.SelectedThingList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnSubmit">Поиск</button>
     }
 </div>
+    
+@if (Model.EntryList.Any())
+{
+    <h2>Результаты поиска</h2>
+    <div class="list-group">
+        @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+        {
+            <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">@entry.Name</h5>
+                    <small>3 дня назад</small>
+                </div>
+                <p class="mb-1">@entry.Description</p>
+                <small></small>
+            </a>
+        }
+    </div>
+}

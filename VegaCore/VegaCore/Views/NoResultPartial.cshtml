@@ -1,0 +1,7 @@
+﻿<div class="text-center center">
+    <h2>На данный момент не существует ни одной записи</h2>
+    <p>Попробуйте добавить новую запись</p>
+    <a href="@Url.Action("New", @ViewData["controller"]?.ToString() ?? " ", new { @parentId = @ViewData["parentId"] })">
+        <input value="Добавить @ViewData["addWord"]" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
+    </a>
+</div>

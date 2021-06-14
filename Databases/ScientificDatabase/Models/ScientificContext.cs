@@ -34,7 +34,7 @@ namespace ScientificDatabase.Models
         {
             //if (!optionsBuilder.IsConfigured)
             //{
-            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=Scientific;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS01;Database=Scientific;Trusted_Connection=True;MultipleActiveResultSets=true");
             //}
         }
 

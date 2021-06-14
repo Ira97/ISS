@@ -1,0 +1,18 @@
+﻿@model Models.AreaDto
+@{
+    ViewBag.Title = "Создание области науки";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="d-flex justify-content-center">
+    @using (Html.BeginForm("New", "Area", FormMethod.Post, new { role = "form", @class = "col-lg-7" }))
+    {
+    <h1>Создание области науки</h1>
+        @Html.ValidationSummary(true)      
+        <div class="form-group">
+            <label>Название*</label>
+            @Html.TextBoxFor(m => m.Name, new { placeholder = "Введие название", @required = true, @class = "form-control is-invalid", @value = Model.Name })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnSubmit">Сохранить</button>
+    }
+</div>

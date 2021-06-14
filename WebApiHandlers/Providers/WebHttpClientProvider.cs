@@ -35,7 +35,10 @@ namespace WebApiHandlers.Providers
         {
             try
             {
-                using var httpClient = new HttpClient();
+                var clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                using var httpClient = new HttpClient(clientHandler);
+
                 var response = await httpClient.DeleteAsync($"{AppSettings.WebApiServer}{url}");
                 if (response.IsSuccessStatusCode)
                 {
@@ -59,7 +62,9 @@ namespace WebApiHandlers.Providers
         {
             try
             {
-                using var httpClient = new HttpClient();
+                var clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                using var httpClient = new HttpClient(clientHandler);
                 httpClient.Timeout = TimeSpan.FromMinutes(40);
                 var response =
                     await httpClient.GetAsync($"{AppSettings.WebApiServer}{url}");
@@ -81,8 +86,10 @@ namespace WebApiHandlers.Providers
         {
             try
             {
-                using var httpClient = new HttpClient();
-  
+                var clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                using var httpClient = new HttpClient(clientHandler);
+
                 using HttpContent httpContent = new ObjectContent(typeof(object), data,
                     new JsonMediaTypeFormatter());
                 var response =
@@ -105,8 +112,10 @@ namespace WebApiHandlers.Providers
         {
             try
             {
-                using var httpClient = new HttpClient();
-       
+                var clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                using var httpClient = new HttpClient(clientHandler);
+
                 using HttpContent httpContent = new ObjectContent(typeof(object), data,
                     new JsonMediaTypeFormatter());
                 var response =
@@ -131,8 +140,10 @@ namespace WebApiHandlers.Providers
         {
             try
             {
-                using var httpClient = new HttpClient();
-               
+                var clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                using var httpClient = new HttpClient(clientHandler);
+
                 using HttpContent httpContent = new ObjectContent(typeof(object), data,
                     new JsonMediaTypeFormatter());
                 var response =

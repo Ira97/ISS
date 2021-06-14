@@ -27,89 +27,28 @@ namespace Vega.Controllers
             {
                 AreaList = await _areaProvider.GetAreaListAsync()
             };
-        //var model = new AreaViewModel()
-        //{
-        //    AreaList = new List<AreaDto>
-        //    {
-        //        new AreaDto
-        //        {
-        //            Id =1,
-        //            Name = "Химия",
-        //            ImageName = "Chemistry-bg.jpg"
-        //        },
-        //        new AreaDto
-        //        {
-        //            Id =2,
-        //            Name = "Физика"
-        //        },
-        //        new AreaDto
-        //        {
-        //            Id =3,
-        //            Name = "Биология"
-        //        },
-        //        new AreaDto
-        //        {
-        //            Id =4,
-        //            Name = "Литра"
-        //        },
-        //        new AreaDto
-        //        {
-        //            Id =5,
-        //            Name = "Труды"
-        //        },
-        //    }
-        //};
-        return View(model);
+            return View(model);
         }
 
-       
+
         public async Task<IActionResult> View(int id)
         {
             var model = await _areaProvider.GetAreaAsync(id);
-            //var model = new AreaDto()
-            //{
-            //    Id = id,
-            //    Name = "Химия",
-            //    Section = new List<SectionDto>
-            //    {
-            //        new SectionDto()
-            //        {
-            //            Id = 1,
-            //            Name = "Такая химия"
-            //        },
-            //        new SectionDto()
-            //        {
-            //            Id = 2,
-            //            Name = "Другая химия"
-            //        },
-            //         new SectionDto()
-            //        {
-            //            Id = 3,
-            //            Name = "Третья химия"
-            //        },
-            //          new SectionDto()
-            //        {
-            //            Id = 4,
-            //            Name = "Четвертая химия"
-            //        },
-            //           new SectionDto()
-            //        {
-            //            Id = 5,
-            //            Name = "Пятая химия"
-            //        },
-            //              new SectionDto()
-            //        {
-            //            Id = 6,
-            //            Name = "Шестая химия"
-            //        },
-            //           new SectionDto()
-            //        {
-            //            Id = 7,
-            //            Name = "Седьмая химия"
-            //        }
-            //    }
-            //};
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> New()
+        {
+            var model = new AreaDto();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> New(AreaDto area)
+        {
+            await _areaProvider.CreateAreaAsync(area);
+            return RedirectToAction("index");
         }
     }
 }

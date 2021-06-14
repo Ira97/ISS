@@ -17,9 +17,9 @@ namespace WebApiHandlers.Providers
             _httpClientProvider = httpClientProvider;
         }
 
-        public Task CreateAreaAsync(AreaDto areaDto)
+        public async Task CreateAreaAsync(AreaDto areaDto)
         {
-            throw new NotImplementedException();
+            await _httpClientProvider.SendHttpPostRequest(areaDto, $"area");
         }
 
         public async Task<AreaDto> GetAreaAsync(int id)

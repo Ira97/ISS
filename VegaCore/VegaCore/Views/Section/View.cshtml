@@ -14,111 +14,143 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div class="row">
-            <div class="mb-3 mt-3 col-lg-12">
-                <a href="@Url.Action("New", "Section", new { @parentId = Model.Id})">
-                    <input value="Добавить" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
-                </a>
-            </div>
-        </div>
+
         @if (Model.SectionDtos != null)
         {
-            @foreach (var sect in Model.SectionDtos)
+            if (Model.SectionDtos.Any())
             {
-                <a href="@Url.RouteUrl(new { controller = "Section", action = "View", id = sect.Id })" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">@sect.Name</h5>
+                <div class="row">
+                    <div class="mb-3 mt-3 col-lg-12">
+                        <a href="@Url.Action("New", "Section", new { @parentId = Model.Id})">
+                            <input value="Добавить раздел" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
+                        </a>
                     </div>
-                    <p class="mb-1">@sect.Description</p>
-                    <small></small>
-                </a>
+                </div>
+                @foreach (var sect in Model.SectionDtos)
+                {
+                    <a href="@Url.RouteUrl(new { controller = "Section", action = "View", id = sect.Id })" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">@sect.Name</h5>
+                        </div>
+                        <p class="mb-1">@sect.Description</p>
+                        <small></small>
+                    </a>
+                }
             }
+            else
+            {
+                @await Html.PartialAsync("~/Views/NoResultPartial.cshtml")
+            }
+
         }
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
         @if (Model.TypeObjects != null)
         {
-            <div class="accordion" id="accordionExample">
-                @foreach (var typeObject in Model.TypeObjects)
-                {
-                    var typeId = $"collapse{typeObject.Id}";
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#@typeId" aria-expanded="true" aria-controls="@typeId">
-                                    @typeObject.Name
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="@typeId" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <h2>@typeObject.Name</h2>
-                                <div class="row">
-                                    <div class="mb-3 col-lg-12">
-                                        <button data-toggle="modal" data-target="#viewModal" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0">Добавить</button>
-                                        <button data-toggle="modal" data-target="#searchModal" type="button" class="btn btn-warning col-sm-12 col-lg-auto">Отфильтровать</button>
+            if (Model.TypeObjects.Any())
+            {
+                <div class="row">
+                    <div class="mb-3 mt-3 col-lg-12">
+                        <a href="@Url.Action("New", "", new { @parentId = Model.Id })">
+                            <input value="Добавить тип объекта" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion" id="accordionExample">
+                    @foreach (var typeObject in Model.TypeObjects)
+                    {
+                        var typeId = $"collapse{typeObject.Id}";
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#@typeId" aria-expanded="true" aria-controls="@typeId">
+                                        @typeObject.Name
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="@typeId" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <h2>@typeObject.Name</h2>
+                                    <div class="row">
+                                        <div class="mb-3 col-lg-12">
+                                            <button data-toggle="modal" data-target="#viewModal" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0">Добавить объект</button>
+                                            <button data-toggle="modal" data-target="#searchModal" type="button" class="btn btn-warning col-sm-12 col-lg-auto">Отфильтровать</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="table-responsive table-striped">
-                                    <table class="table table-bordered table-hover table-striped" id="mainTable">
-                                        <thead>
-                                            <tr>
-                                                <th class="position-relative sorting">Id</th>
-                                                <th class="position-relative sorting">Название</th>
-                                                @foreach (var prop in typeObject.Properties)
-                                                {
-                                                    <th class="position-relative sorting">@prop.Name</th>
-                                                }
-                                            </tr>
-                                        </thead>
-                                        <tbody id="mainTableBody">
-                                            @foreach (var dataObject in typeObject.DataObjects)
-                                            {
+                                    <div class="table-responsive table-striped">
+                                        <table class="table table-bordered table-hover table-striped" id="mainTable">
+                                            <thead>
                                                 <tr>
-                                                    <td>@Html.ActionLink(dataObject.Id.ToString(), "View", new { @id = dataObject.Id })</td>
-                                                    <td>@Html.ActionLink(dataObject.Name ?? " ", "View", new { @id = dataObject.Id })</td>
-                                                    @foreach (var prop in dataObject?.ValuePropertyObjects)
+                                                    <th class="position-relative sorting">Id</th>
+                                                    <th class="position-relative sorting">Название</th>
+                                                    @foreach (var prop in typeObject.Properties)
                                                     {
-                                                        <td>@prop.Value</td>
+                                                        <th class="position-relative sorting">@prop.Name</th>
                                                     }
                                                 </tr>
-                                            }
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody id="mainTableBody">
+                                                @foreach (var dataObject in typeObject.DataObjects)
+                                                {
+                                                    <tr>
+                                                        <td>@Html.ActionLink(dataObject.Id.ToString(), "View", new { @id = dataObject.Id })</td>
+                                                        <td>@Html.ActionLink(dataObject.Name ?? " ", "View", new { @id = dataObject.Id })</td>
+                                                        @foreach (var prop in dataObject?.ValuePropertyObjects)
+                                                        {
+                                                            <td>@prop.Value</td>
+                                                        }
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
-            </div>
+                    }
+                </div>
+            }
+            else
+            {
+                @await Html.PartialAsync("~/Views/NoResultPartial.cshtml", new ViewDataDictionary(ViewData) { new KeyValuePair<string, object>("addWord", "тип объекта"), new KeyValuePair<string, object>("controller", "TypeObject"), new KeyValuePair<string, object>("parentId", Model.Id) });
+            }
         }
     </div>
     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <div class="row">
-            <div class="mb-3 mt-3 col-lg-12">
-                <a href="@Url.Action("View", "Research", new { @sectionId = Model.Id})">
-                    <input value="Добавить" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0"/>
-                </a>
-            </div>
-        </div>
+
         @if (Model.Researches != null)
         {
-            @foreach (var research in Model.Researches)
+            if (Model.Researches.Any())
             {
-                var dataObjectString = string.Empty;
-                @foreach (var dataObject in research.DataObjects)
-                {
-                    dataObjectString += $"{dataObject.Name} ";
-                }
-                <a class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">@research.Title</h5>
+                <div class="row">
+                    <div class="mb-3 mt-3 col-lg-12">
+                        <a href="@Url.Action("View", "Research", new { @sectionId = Model.Id})">
+                            <input value="Добавить исследование" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
+                        </a>
                     </div>
-                    <p class="mb-1">@research.Description</p>
-                    <p class="mb-1">Объекты ииследования: @dataObjectString</p>
-                    <small>@research.Author</small>
-                </a>
+                </div>
+                @foreach (var research in Model.Researches)
+                {
+                    var dataObjectString = string.Empty;
+                    @foreach (var dataObject in research.DataObjects)
+                    {
+                        dataObjectString += $"{dataObject.Name} ";
+                    }
+                    <a class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">@research.Title</h5>
+                        </div>
+                        <p class="mb-1">@research.Description</p>
+                        <p class="mb-1">Объекты исследования: @dataObjectString</p>
+                        <small>@research.Author</small>
+                    </a>
 
+                }
+            }
+            else
+            {
+                @await Html.PartialAsync("~/Views/NoResultPartial.cshtml")
             }
         }
     </div>

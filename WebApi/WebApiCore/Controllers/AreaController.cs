@@ -62,7 +62,7 @@ namespace WebApiCore.Controllers
 
         [ProducesResponseType(typeof(List<AreaDto>), 200)]
         [ProducesResponseType(typeof(string), 400)]
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<Result> CreateAreaAsync([FromBody] AreaDto areaDto)
         {
             var result = await _areaService.CreateAreaAsync(areaDto);
