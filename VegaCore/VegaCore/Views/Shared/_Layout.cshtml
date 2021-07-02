@@ -25,18 +25,23 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse flex-lg-row-reverse">
+
                     <ul class="navbar-nav ml-auto">
                         <li>
                             @await Html.PartialAsync("_LoginPartial")
                         </li>
                     </ul>
                     <div class="navbar-nav flex-grow-1">
-
                     </div>
-                    <form class="form-inline my-2 my-lg-0" action="/Search" method="get" role="form">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Поиск..." name="Value" aria-label="Search">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Поиск</button>
-                    </form>
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Expert") || User.IsInRole("User") && ViewContext.RouteData.Values["controller"]?.ToString() != "Account" && ViewContext.RouteData.Values["controller"]?.ToString() != "Search" && ViewContext.RouteData.Values["controller"]?.ToString() != "SimpleSearch")
+                    {
+                        <form class="form-inline my-2 my-lg-0" action="/SimpleSearch" method="get" role="form">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Поиск..." name="Value" aria-label="Search">
+                            <button class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2" type="submit">Поиск</button>
+                            <button class="btn btn-primary my-2 my-sm-0" type="button" onclick="location.href='@Url.Action("Index", "Search")'">Расширенный поиск</button>
+                        </form>
+                    }
+
                 </div>
             </div>
         </nav>
@@ -106,7 +111,7 @@
                 }
             }
         }
-       
+
         $('.form-control-chosen').chosen({
             search_contains: true,
             width: "100%",
@@ -117,9 +122,6 @@
         $(document).ready(function () {
             const isUserAuthenticated = "@User.Identity.IsAuthenticated";
             AddSortButton();
-            if (isUserAuthenticated === "True") {
-                GetNewNps();
-            }
         });
     </script>
 </body>

@@ -12,6 +12,7 @@ using WebApiHandlers.Interfaces;
 using WebApiHandlers.Providers;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.V8;
+using ScientificDatabase.Repositories.TypeObjectRepositopy;
 
 namespace Vega
 {
@@ -40,6 +41,8 @@ namespace Vega
             services.AddScoped<IUserProvider, UserProvider>();
             services.AddScoped<ISectionProvider, SectionProvider>();
             services.AddScoped<ISearchProvider, SearchProvider>();
+
+
            
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
             services.AddMemoryCache();

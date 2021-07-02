@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label>Авторы*</label>
-            @Html.TextBoxFor(m => m.Research.Author, new { placeholder = "Введите авторов через запятую", @required = true, @class = "form-control", @value = Model.Research.Author })
+            @Html.TextBoxFor(m => m.Research.Author, new { placeholder = "Введите авторов через запятую в Формате Иванов И.И.", @required = true, @class = "form-control", @value = Model.Research.Author })
             @Html.ValidationMessageFor(m => m.Research.Author)
         </div>
         <div class="form-group">
@@ -48,7 +48,7 @@
             @Html.ValidationMessageFor(m => m.Research.Description)
         </div>
         <div id="advanced-property-group">
-            <label>Дополнительные свойства</label>
+            <label>Дополнительные параметры</label>
             <div class="form-group">
                 <button type="button" class="btn btn-primary" onclick="addProperty()">Добавить</button>
             </div>

@@ -64,5 +64,10 @@ namespace WebApiHandlers.Providers
         {
             return await _httpClientProvider.SendHttpGetRequest<TypeObjectDto>($"section/type/{typeObjectId}");
         }
+
+        public async Task<List<ContactTypeDto>> GetContactListAsync()
+        {
+            return await _httpClientProvider.SendHttpGetRequest<List<ContactTypeDto>>($"section/contact");
+        }
     }
 }

@@ -87,6 +87,16 @@ namespace WebApiCore.Controllers
             return result.ValueOrDefault;
         }
 
+
+        [ProducesResponseType(typeof(List<DataObjectDto>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [HttpGet("contact")]
+        public async Task<List<ContactTypeDto>> GetContactTypeListAsync()
+        {
+            var result = await _sectionService.GetContactTypeListAsync();
+            return result.ValueOrDefault;
+        }
+
         [ProducesResponseType(typeof(List<MethodDto>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         [HttpGet("method")]

@@ -1,32 +1,30 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Search;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-
 using WebApiHandlers.Interfaces;
 
 namespace Vega.Controllers
 {
     [Authorize(Roles = "Administrator,Expert,User")]
-    public class SearchController : Controller
+    public class SimpleSearchController : Controller
     {
         private readonly ISearchProvider _searchProvider;
 
-        public SearchController(ISearchProvider searchProvider, ISectionProvider sectionProvider)
+        public SimpleSearchController(ISearchProvider searchProvider)
         {
             _searchProvider = searchProvider;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string value)
         {
-            return View(new SearchResult());
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Index(SearchResult searchResult)
-        {
-            searchResult = await _searchProvider.GetSearchResult(searchResult);
+            var searchResult = await _searchProvider.GetSimpleSearchResult(value);
+            searchResult.Value = value;
             return View(searchResult);
         }
     }

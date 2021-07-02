@@ -28,13 +28,29 @@
                 </div>
                 @foreach (var sect in Model.SectionDtos)
                 {
-                    <a href="@Url.RouteUrl(new { controller = "Section", action = "View", id = sect.Id })" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">@sect.Name</h5>
+                            <a href="@Url.RouteUrl(new { controller = "Section", action = "View", id = sect.Id })">
+                                <h5 class="mb-1">@sect.Name</h5>
+                            </a>
+                            <div class="adv-buttons">
+                                <button type="button" class="btn btn-warning">
+                                    <svg class="bi" width="16" height="16" fill="currentColor">
+                                        <use xlink:href="../../lib/bootstrap-icons/bootstrap-icons.svg#pencil-fill" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <svg class="bi" width="16" height="16" fill="currentColor">
+                                        <use xlink:href="../../lib/bootstrap-icons/bootstrap-icons.svg#x" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
-                        <p class="mb-1">@sect.Description</p>
-                        <small></small>
-                    </a>
+                        <a href="@Url.RouteUrl(new { controller = "Section", action = "View", id = sect.Id })">
+                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        </a>
+                        <small>Donec id elit non mi porta.</small>
+                    </div>
                 }
             }
             else
@@ -77,7 +93,7 @@
                                             <a href="@Url.Action("New", "DataObject", new { @typeObjectId = @typeObject.Id})">
                                                 <input value="Добавить объект" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
                                             </a>
-                                            <button data-toggle="modal" data-target="#searchModal" type="button" class="btn btn-warning col-sm-12 col-lg-auto">Отфильтровать</button>
+
                                         </div>
                                     </div>
                                     <div class="table-responsive table-striped">
@@ -96,8 +112,8 @@
                                                 @foreach (var dataObject in typeObject.DataObjects)
                                                 {
                                                     <tr>
-                                                        <td>@Html.ActionLink(dataObject.Id.ToString(), "View", new { @id = dataObject.Id })</td>
-                                                        <td>@Html.ActionLink(dataObject.Name ?? " ", "View", new { @id = dataObject.Id })</td>
+                                                        <td>@Html.ActionLink(dataObject.Id.ToString(), "View", "DataObject", new { @id = dataObject.Id })</td>
+                                                        <td>@Html.ActionLink(dataObject.Name ?? " ", "View", "DataObject", new { @id = dataObject.Id })</td>
                                                         @foreach (var prop in dataObject?.ValuePropertyObjects)
                                                         {
                                                             <td>@prop.Value</td>
@@ -139,20 +155,43 @@
                     {
                         dataObjectString += $"{dataObject.Name} ";
                     }
-                    <a class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">@research.Title</h5>
+                            <div class="adv-buttons">
+                                <button type="button" class="btn btn-light" onclick="location.href='@Url.Action("Index", "Contact", new { researchId = research.Id})'">
+                                    <svg class="bi" width="16" height="16" fill="currentColor">
+                                        <use xlink:href="../../lib/bootstrap-icons/bootstrap-icons.svg#paperclip" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-warning">
+                                    <svg class="bi" width="16" height="16" fill="currentColor">
+                                        <use xlink:href="../../lib/bootstrap-icons/bootstrap-icons.svg#pencil-fill" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <svg class="bi" width="16" height="16" fill="currentColor">
+                                        <use xlink:href="../../lib/bootstrap-icons/bootstrap-icons.svg#x" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         <p class="mb-1">@research.Description</p>
                         <p class="mb-1">Объекты исследования: @dataObjectString</p>
                         <small>@research.Author</small>
-                    </a>
+                    </div>
 
                 }
             }
             else
             {
-                @await Html.PartialAsync("~/Views/NoResultPartial.cshtml")
+                <div class="text-center center">
+                    <h2>На данный момент не существует ни одного исследования</h2>
+                    <p>Попробуйте добавить новое исследование</p>
+                    <a href="@Url.Action("View", "Research", new { @parentId = @ViewData["parentId"] })">
+                        <input value="Добавить исследование" type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-2 mb-lg-0" />
+                    </a>
+                </div>
             }
         }
     </div>

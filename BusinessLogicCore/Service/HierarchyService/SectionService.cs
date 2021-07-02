@@ -22,10 +22,11 @@ namespace BusinessLogicCore.Service
         private ResearchRepository _researchRepository;
         private DataObjectRepository _dataObjectRepository;
         private TypeObjectRepository _typeObjectRepository;
+        private ContactTypeRepository _contactTypeRepository;
         private IMapperProvider _mapperProvider;
 
         public SectionService(SectionRepositopy sectionRepositopy,
-            IMapperProvider mapperProvider, ResearchRepository researchRepository, DataObjectRepository dataObjectRepository, PropertiesRepository propertiesRepository, TypeObjectRepository typeObjectRepository)
+            IMapperProvider mapperProvider, ResearchRepository researchRepository, DataObjectRepository dataObjectRepository, PropertiesRepository propertiesRepository, TypeObjectRepository typeObjectRepository, ContactTypeRepository contactTypeRepository)
         {
             _sectionRepositopy = sectionRepositopy;
             _mapperProvider = mapperProvider;
@@ -33,6 +34,7 @@ namespace BusinessLogicCore.Service
             _dataObjectRepository = dataObjectRepository;
             _propertiesRepository = propertiesRepository;
             _typeObjectRepository = typeObjectRepository;
+            _contactTypeRepository = contactTypeRepository;
         }
 
         public async Task<Result> CreateSectionAsync(SectionDto sectionDto)
@@ -128,6 +130,11 @@ namespace BusinessLogicCore.Service
             return Result.Ok(mappedList);
         }
 
-
+        public async Task<Result<List<ContactTypeDto>>> GetContactTypeListAsync()
+        {
+            var items = await _contactTypeRepository.GetItemsAsync();
+            var mappedList = _mapperProvider.CreateMapForList<ContactType, ContactTypeDto>(items);
+            return Result.Ok(mappedList);
+        }
     }
 }

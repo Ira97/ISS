@@ -14,14 +14,14 @@ namespace WebApiHandlers.Providers
             _httpClientProvider = httpClientProvider;
         }
 
-        public Task<SearchResult> GetFullSearchResult(SearchRequest searchRequest)
+        public async Task<SearchResult> GetSearchResult(SearchResult searchRequest)
         {
-            throw new NotImplementedException();
+            return await _httpClientProvider.SendHttpPostWithResponse<SearchResult>(searchRequest, "search");
         }
 
-        public async Task<SearchResult> GetSimpleSearchResult(string value)
+        public async Task<SimpleSearchResult> GetSimpleSearchResult(string value)
         {
-            return await _httpClientProvider.SendHttpGetRequest<SearchResult>($"search/simple?value={value}");
+            return await _httpClientProvider.SendHttpGetRequest<SimpleSearchResult>($"search/simple?value={value}");
         }
     }
 }

@@ -8,11 +8,12 @@ namespace Models.Search
     {
         public string Value { get; set; }
         public List<Entry> EntryList = new List<Entry>();
-        public SearchRequest SearchRequest = new SearchRequest();
-        public List<DataObjectDto> DataObjectList { get; set; }
-        public List<MethodDto> MethodList { get; set; }
-        public List<DataObjectDto> ThingList { get; set; }
-        public List<PropertyDto> PropertyList { get; set; }
-        public List<SectionDto> SectionList { get; set; }
+        public bool SectionSearch { get; set; }
+        public bool DataObjectSearch { get; set; }
+        public bool ResearchSearch { get; set; }
+        public bool MethodSearch { get; set; }
+        public bool PropertySearch { get; set; }
+        public bool AuthorSearch { get; set; }
+        public bool ThingSearch { get; set; }
     }
 }

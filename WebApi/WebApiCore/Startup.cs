@@ -159,6 +159,7 @@ namespace WebApiCore
             services.AddScoped<ScientificDatabase.Repositories.HierarchyRepository.AreaRepository>();
             services.AddScoped<ScientificDatabase.Repositories.HierarchyRepository.SectionRepositopy>();
             services.AddScoped<ScientificDatabase.Repositories.TypeObjectRepository.TypeObjectRepository>();
+            services.AddScoped<ContactTypeRepository>();
             services.AddScoped<PropertiesRepository>();
             services.AddScoped<ValueRepository>();
             services.AddScoped<DataObjectRepository>();

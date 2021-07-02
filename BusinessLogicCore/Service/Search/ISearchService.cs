@@ -9,6 +9,7 @@ namespace BusinessLogicCore.Service.Search
 {
     public interface ISearchService
     {
-        Task<Result<SearchResult>> GetSimpleSearchAsync(string value);
+        Task<Result<SimpleSearchResult>> GetSimpleSearchAsync(string value);
+        Task<Result<SearchResult>> GetSearchAsync(SearchResult searchResult);
     }
 }

@@ -5,9 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models.Search;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApiCore.Controllers
@@ -26,9 +23,18 @@ namespace WebApiCore.Controllers
         }
 
         [HttpGet("simple")]
-        public async Task<SearchResult> SimpleSearchAsync([FromQuery] string value)
+        public async Task<SimpleSearchResult> SimpleSearchAsync([FromQuery] string value)
         {
             var result = await _searchService.GetSimpleSearchAsync(value);
+            if (result.IsFailed)
+                return result.Value;
+            return result.Value;
+        }
+
+        [HttpPost]
+        public async Task<SearchResult> SearchAsync([FromBody] SearchResult searchResult)
+        {
+            var result = await _searchService.GetSearchAsync(searchResult);
             if (result.IsFailed)
                 return result.Value;
             return result.Value;

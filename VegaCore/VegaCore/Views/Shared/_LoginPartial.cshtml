@@ -11,7 +11,10 @@
 }
 else
 {
-    <button type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-1 mb-sm-0" onclick="location.href='@Url.Action("Login", "Account")'">
-        Войти
-    </button>
+    @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Account")
+    {
+        <button type="button" class="btn btn-primary col-sm-12 col-lg-auto mb-1 mb-sm-0" onclick="location.href='@Url.Action("Login", "Account")'">
+            Войти
+        </button>
+    }
 }

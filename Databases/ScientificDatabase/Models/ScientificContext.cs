@@ -25,6 +25,7 @@ namespace ScientificDatabase.Models
         public virtual DbSet<TypeObject.TypeObject> TypeObjects { set; get; }
         public virtual DbSet<ValuePropertyObject> ValuePropertyObjects { set; get; }
         public virtual DbSet<Research> Researches { set; get; }
+        public virtual DbSet<ContactType> ContactTypes { get; set; }
 
         /// <summary>
         /// Страка подключения используемая при миграции базы данных

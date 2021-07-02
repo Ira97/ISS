@@ -10,8 +10,8 @@
             <a href="@Url.RouteUrl(new { controller = "Area", action = "View", id = area.Id })">
                 @if (area.ImageName != null)
                 {
-                    <div class="nav-link" style="background-image: url(../img/@area.ImageName);">
-                        <div class="text-white display-4" style="min-height: 35vh; line-height: 32vh ; text-align: center">@area.Name</div>
+                    <div class="nav-link" style="background-image: url(../img/@area.ImageName); background-size: cover;">
+                        <div class="text-white" style="min-height: 35vh; line-height: 32vh; text-align: center; font-size: x-large;">@area.Name</div>
                     </div>
                 }
                 else

@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models.ViewModels;
 using System.Threading.Tasks;
 using WebApiHandlers.Interfaces;
 
 namespace Vega.Controllers
 {
-    //[Authorize(Roles = "Administrator,Expert,User")]
+    [Authorize(Roles = "Administrator,Expert,User")]
     public class SectionController : Controller
     {
         private readonly ISectionProvider _sectionProvider;

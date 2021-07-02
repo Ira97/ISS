@@ -1,0 +1,28 @@
+﻿@model Models.ViewModels.ContactViewModel
+
+@{
+    ViewBag.Title = "Привязка объекта к исследованию";
+    Layout = "_Layout";
+}
+
+<div class="d-flex justify-content-center">
+    @using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { role = "form", @class = "col-lg-7" }))
+    {
+        <h1>Привязка объекта к исследованию</h1>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.ResearchId)
+        <div class="form-group">
+            <label>Связанные объекты*</label>
+            @Html.DropDownListFor(m => m.SelectedObject, new SelectList(Model.DataObjectList, "Id", "Name", Model.SelectedObject), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+        </div>
+        <div class="form-group">
+            <label>Тип связи*</label>
+            @Html.DropDownListFor(m => m.SelectedContact, new SelectList(Model.ContactList, "Id", "Name", Model.SelectedContact), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+        </div>
+        <div class="form-group">
+            <label for="Range">Важность связи</label>
+            <input type="range" class="custom-range" min="0" max="5" id="Range">
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnSubmit">Сохранить</button>
+    }
+</div>

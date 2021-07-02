@@ -1,0 +1,37 @@
+﻿@model Models.Search.SimpleSearchResult
+@{
+    ViewBag.Title = "Поиск";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="d-flex">
+    @using (Html.BeginForm("Index", "SimpleSearch", FormMethod.Get, new { role = "form" }))
+    {
+        <h1>Простой поиск</h1>
+        <div class="form-row mb-3">
+            <div class="form-group col-10 pl-0">
+                @Html.TextBoxFor(m => m.Value, new { placeholder = "Поиск...", @required = true, @class = "form-control", @value = Model.Value, type = "search" })
+            </div>
+            <div class="form-group col-2 pr-0">
+                <button type="submit" class="btn btn-primary btn-block">Поиск</button>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.EntryList.Any())
+{
+    <h2>Результаты поиска</h2>
+    <div class="list-group form-row">
+        @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+        {
+            <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1">@entry.Name</p>
+                </div>
+                <small></small>
+            </a>
+        }
+    </div>
+}

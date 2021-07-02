@@ -6,55 +6,102 @@
 
 
 <div class="d-flex">
-    @using (Html.BeginForm("Index", "Search", FormMethod.Post, new { role = "form", @class = "col-lg-7" }))
+    @using (Html.BeginForm("Index", "Search", FormMethod.Post, new { role = "form" }))
     {
         <h1>Расширенный поиск</h1>
-        <div class="form-group">
-            <label>Искать по названию</label>
-            @Html.TextBoxFor(m => m.SearchRequest.Title, new { placeholder = "", @required = true, @class = "form-control", @value = Model.SearchRequest.Title })
+        <div class="form-row">
+            <div class="form-check form-check-inline  mb-3">
+                @Html.CheckBoxFor(m => m.SectionSearch)
+                <label class="form-check-label" for="inlineCheckbox1">Искать в разделах</label>
+            </div>
+            <div class="form-check form-check-inline  mb-3">
+                @Html.CheckBoxFor(m => m.AuthorSearch)
+                <label class="form-check-label" for="inlineCheckbox2">Искать в авторах</label>
+            </div>
+            <div class="form-check form-check-inline  mb-3">
+                @Html.CheckBoxFor(m => m.DataObjectSearch)
+                <label class="form-check-label" for="inlineCheckbox2">Искать в объектах</label>
+            </div>
+            <div class="form-check form-check-inline  mb-3">
+                @Html.CheckBoxFor(m => m.PropertySearch)
+                <label class="form-check-label" for="inlineCheckbox2">Искать в свойствах</label>
+            </div>
+            <div class="form-check form-check-inline mb-3">
+                @Html.CheckBoxFor(m => m.MethodSearch)
+                <label class="form-check-label" for="inlineCheckbox2">Искать в методах</label>
+            </div>
+            <div class="form-check form-check-inline mb-3">
+                @Html.CheckBoxFor(m => m.ThingSearch)
+                <label class="form-check-label" for="inlineCheckbox2">Искать в предметах</label>
+            </div>
+            <div class="form-check form-check-inline mb-3">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">Искать в дополнительных параметрах</label>
+            </div>
+
         </div>
-        <div class="form-group">
-            <label>Искать по авторам</label>
-            @Html.TextBoxFor(m => m.SearchRequest.Title, new { placeholder = "", @required = true, @class = "form-control", @value = Model.SearchRequest.Title })
+        <div class="form-row mb-3">
+            <div class="form-group col-10 pl-0">
+                @Html.TextBoxFor(m => m.Value, new { placeholder = "Поиск...", @required = true, @class = "form-control", @value = Model.Value, type = "search" })
+            </div>
+            <div class="form-group col-2 pr-0">
+                <button type="submit" class="btn btn-primary btn-block">Поиск</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Выберите разделы</label>
-            @Html.ListBoxFor(m => m.SearchRequest.SelectedSectionList, new MultiSelectList(Model.SectionList, "Id", "Name", Model.SearchRequest.SelectedSectionList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
-        </div>
-        <div class="form-group">
-            <label>Выберите объекты</label>
-            @Html.ListBoxFor(m => m.SearchRequest.SelectedObjectList, new MultiSelectList(Model.DataObjectList, "Id", "Name", Model.SearchRequest.SelectedObjectList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
-        </div>
-        <div class="form-group">
-            <label>Выберите свойства</label>
-            @Html.ListBoxFor(m => m.SearchRequest.SelectedPropertyList, new MultiSelectList(Model.PropertyList, "Id", "Name", Model.SearchRequest.SelectedPropertyList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
-        </div>
-        <div class="form-group">
-            <label>Выберите методы</label>
-            @Html.ListBoxFor(m => m.SearchRequest.SelectedMethodList, new MultiSelectList(Model.MethodList, "Id", "Name", Model.SearchRequest.SelectedMethodList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
-        </div>
-        <div class="form-group">
-            <label>Выберите предметы</label>
-            @Html.ListBoxFor(m => m.SearchRequest.SelectedThingList, new MultiSelectList(Model.ThingList, "Id", "Name", Model.SearchRequest.SelectedThingList), new { @class = "form-control form-control-chosen", data_live_search = "true" })
-        </div>
-        <button type="submit" class="btn btn-primary" id="btnSubmit">Поиск</button>
+
     }
 </div>
-    
+
 @if (Model.EntryList.Any())
 {
     <h2>Результаты поиска</h2>
-    <div class="list-group">
-        @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
-        {
-            <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">@entry.Name</h5>
-                    <small>3 дня назад</small>
-                </div>
-                <p class="mb-1">@entry.Description</p>
-                <small></small>
-            </a>
-        }
+    <div class="list-group form-row">
+        <nav>
+            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                <h5 class="nav-item nav-link active">Вхождения по связям</h5>
+            </div>
+        </nav>
+        <div class="mb-3">
+            @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+            {
+                <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1">@entry.Name</p>
+                    </div>
+                    <small></small>
+                </a>
+            }
+        </div>
+        <nav>
+            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                <h5 class="nav-item nav-link active">Вхождения по cвязям и ключам</h5>
+            </div>
+        </nav>
+        <div class="mb-3">
+            @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+            {
+                <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1">@entry.Name</p>
+                    </div>
+
+                </a>
+            }
+        </div>
+        <nav>
+            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                <h5 class="nav-item nav-link active">Вхождения по ключам</h5>
+            </div>
+        </nav>
+        <div class="mb-3">
+            @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+            {
+                <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1">@entry.Name</p>
+                    </div>
+                </a>
+            }
+        </div>
     </div>
 }

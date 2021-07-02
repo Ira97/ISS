@@ -17,6 +17,7 @@ namespace WebApiHandlers.Interfaces
         Task CreateSectionAsync(SectionDto section);
         Task CreateTypeObjectAsync(TypeObjectDto typeObject);
         Task CreateDataObjectAsync(DataObjectDto dataObject);
+        Task<List<ContactTypeDto>> GetContactListAsync();
         Task<TypeObjectDto> GetTypeObject(int typeObjectId);
     }
 }

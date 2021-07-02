@@ -1,10 +1,12 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models.ViewModels;
 
 namespace Vega.Controllers
 {
+    [Authorize(Roles = "Administrator,Expert,User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
