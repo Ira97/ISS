@@ -97,46 +97,7 @@ namespace BusinessLogicCore.Service.Search
             x.Thing.Contains(searchResult.Value) ||
             x.Object.Contains(searchResult.Value) ||
             x.Method.Contains(searchResult.Value));
-            if (searchResult.SectionSearch)
-            {
-                var sectionList = await _sectionsRepository.GetListAsync(x => x.Name.Contains(searchResult.Value) || x.Description.Contains(searchResult.Value));
-                if (sectionList.Any())
-                {
-                    foreach (var section in sectionList)
-                    {
-                        var entryCount = GetEntryCount(section.Description, searchResult.Value) +
-                            GetEntryCount(section.Name, searchResult.Value);
-                        var wordCount = GetWordCount(section.Description) + GetWordCount(section.Name);
-                        newSearchResult.EntryList.Add(new Entry
-                        {
-                            ItemId = section.Id,
-                            Relevance = entryCount / wordCount,
-                            Type = section.GetType().Name,
-                            Name = section.Name,
-                            Description = section.Description
-                        });
-                    }
-                }
-            }
-            if (searchResult.DataObjectSearch)
-            {
-                if (dataObjectList.Any())
-                {
-                    foreach (var dataObject in dataObjectList)
-                    {
-                        var entryCount = GetEntryCount(dataObject.Name, searchResult.Value);
-                        var wordCount = GetWordCount(dataObject.Name);
-                        newSearchResult.EntryList.Add(new Entry
-                        {
-                            ItemId = dataObject.Id,
-                            Relevance = entryCount / wordCount,
-                            Type = dataObject.GetType().Name,
-                            Name = dataObject.Name,
-                            Description = "Объект"
-                        });
-                    }
-                }
-            }
+        
             if (researchList.Any())
             {
                 foreach (var reseach in researchList)

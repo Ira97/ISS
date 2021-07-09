@@ -21,7 +21,9 @@ namespace Vega.Controllers
             {
                 ResearchId = researchId,
                 DataObjectList = await _sectionProvider.GetObjectListAsync(),
-                ContactList = await _sectionProvider.GetContactListAsync()     
+                SecondDataObjectList = await _sectionProvider.GetObjectListAsync(),
+                ContactList = await _sectionProvider.GetContactListAsync(),
+                SectionList = await _sectionProvider.GetSectionListAsync()
             };
             return View(contactViewModel);
         }

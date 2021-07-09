@@ -5,44 +5,40 @@
 }
 
 
-<div class="d-flex">
+<div>
     @using (Html.BeginForm("Index", "Search", FormMethod.Post, new { role = "form" }))
     {
         <h1>Расширенный поиск</h1>
-        <div class="form-row">
-            <div class="form-check form-check-inline  mb-3">
-                @Html.CheckBoxFor(m => m.SectionSearch)
-                <label class="form-check-label" for="inlineCheckbox1">Искать в разделах</label>
+        <div class="d-flex">
+            <div class="form-row mr-3">
+                <div class="form-group">
+                    <label>Раздел*</label>
+                    @Html.DropDownListFor(m => m.SelectedSection, new SelectList(Model.SectionList, "Id", "Name", Model.SelectedSection), new { @class = "form-control form-control-chosen", data_live_search = "true", @onchange = "javascript:onSectionChange()" })
+                </div>
             </div>
-            <div class="form-check form-check-inline  mb-3">
-                @Html.CheckBoxFor(m => m.AuthorSearch)
-                <label class="form-check-label" for="inlineCheckbox2">Искать в авторах</label>
+            <div class="form-row mr-3" id="first">
+                <div class="form-group">
+                    <label>Тип связи*</label>
+                    @Html.DropDownListFor(m => m.SelectedContact, new SelectList(Model.ContactList, "Id", "Name", Model.SelectedContact), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+                </div>
             </div>
-            <div class="form-check form-check-inline  mb-3">
-                @Html.CheckBoxFor(m => m.DataObjectSearch)
-                <label class="form-check-label" for="inlineCheckbox2">Искать в объектах</label>
+            <div class="form-row mr-3" id="second">
+                <div class="form-group">
+                    <label>Тип связи*</label>
+                    @Html.DropDownListFor(m => m.SelectedContact, new SelectList(Model.SecondContactList, "Id", "Name", Model.SelectedContact), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+                </div>
             </div>
-            <div class="form-check form-check-inline  mb-3">
-                @Html.CheckBoxFor(m => m.PropertySearch)
-                <label class="form-check-label" for="inlineCheckbox2">Искать в свойствах</label>
+            <div class="form-row" id="second">
+                <div class="form-group">
+                    <label>Методы</label>
+                    @Html.DropDownListFor(m => m.SelectedMethod, new SelectList(Model.MethodList, "Id", "Name", Model.SelectedMethod), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+                </div>
             </div>
-            <div class="form-check form-check-inline mb-3">
-                @Html.CheckBoxFor(m => m.MethodSearch)
-                <label class="form-check-label" for="inlineCheckbox2">Искать в методах</label>
-            </div>
-            <div class="form-check form-check-inline mb-3">
-                @Html.CheckBoxFor(m => m.ThingSearch)
-                <label class="form-check-label" for="inlineCheckbox2">Искать в предметах</label>
-            </div>
-            <div class="form-check form-check-inline mb-3">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Искать в дополнительных параметрах</label>
-            </div>
-
         </div>
+
         <div class="form-row mb-3">
             <div class="form-group col-10 pl-0">
-                @Html.TextBoxFor(m => m.Value, new { placeholder = "Поиск...", @required = true, @class = "form-control", @value = Model.Value, type = "search" })
+                @Html.TextBoxFor(m => m.Value, new { placeholder = "Введите объект...", @required = true, @class = "form-control", @value = Model.Value, type = "search" })
             </div>
             <div class="form-group col-2 pr-0">
                 <button type="submit" class="btn btn-primary btn-block">Поиск</button>
@@ -55,14 +51,29 @@
 @if (Model.EntryList.Any())
 {
     <h2>Результаты поиска</h2>
-    <div class="list-group form-row">
-        <nav>
-            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                <h5 class="nav-item nav-link active">Вхождения по связям</h5>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active h5" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Вхождения по связям</a>
+            <a class="nav-item nav-link h5" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Вхождения по cвязям и ключам</a>
+            <a class="nav-item nav-link h5" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Вхождения по ключам</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="mb-3">
+                @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+                {
+                    <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <p class="mb-1">@entry.Name</p>
+                        </div>
+                        <small></small>
+                    </a>
+                }
             </div>
-        </nav>
-        <div class="mb-3">
-            @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            @foreach (var entry in Model.SecondEntryList.OrderByDescending(x => x.Relevance))
             {
                 <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
@@ -72,36 +83,25 @@
                 </a>
             }
         </div>
-        <nav>
-            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                <h5 class="nav-item nav-link active">Вхождения по cвязям и ключам</h5>
-            </div>
-        </nav>
-        <div class="mb-3">
-            @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            @foreach (var entry in Model.ThirdEntryList.OrderByDescending(x => x.Relevance))
             {
                 <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <p class="mb-1">@entry.Name</p>
                     </div>
-
+                    <small></small>
                 </a>
             }
         </div>
-        <nav>
-            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                <h5 class="nav-item nav-link active">Вхождения по ключам</h5>
-            </div>
-        </nav>
-        <div class="mb-3">
-            @foreach (var entry in Model.EntryList.OrderByDescending(x => x.Relevance))
-            {
-                <a href="@Url.RouteUrl(new { controller = entry.Type, action = "View", id = entry.ItemId })" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <p class="mb-1">@entry.Name</p>
-                    </div>
-                </a>
-            }
         </div>
-    </div>
-}
+        }
+        <script>
+            $(document).ready(function () {
+                $("#second").hide();
+            });
+            function onSectionChange() {
+                $("#first").hide();
+                $("#second").show();
+            }
+        </script>

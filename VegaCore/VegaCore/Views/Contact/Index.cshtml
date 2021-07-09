@@ -12,8 +12,16 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(m => m.ResearchId)
         <div class="form-group">
+            <label>Раздел*</label>
+            @Html.DropDownListFor(m => m.SelectedSection, new SelectList(Model.SectionList, "Id", "Name", Model.SelectedSection), new { @class = "form-control form-control-chosen", data_live_search = "true", @onchange = "javascript:onSectionChange()" })
+        </div>
+        <div class="form-group" id="first">
             <label>Связанные объекты*</label>
             @Html.DropDownListFor(m => m.SelectedObject, new SelectList(Model.DataObjectList, "Id", "Name", Model.SelectedObject), new { @class = "form-control form-control-chosen", data_live_search = "true" })
+        </div>
+        <div class="form-group" id="second">
+            <label>Связанные объекты*</label>
+            @Html.DropDownListFor(m => m.SelectedObject, new SelectList(Model.SecondDataObjectList, "Id", "Name", Model.SelectedObject), new { @class = "form-control form-control-chosen", data_live_search = "true" })
         </div>
         <div class="form-group">
             <label>Тип связи*</label>
@@ -26,3 +34,12 @@
         <button type="submit" class="btn btn-primary" id="btnSubmit">Сохранить</button>
     }
 </div>
+<script>
+    $(document).ready(function () {
+        $("#second").hide();
+    });
+    function onSectionChange() {
+        $("#first").hide();
+        $("#second").show();
+    }
+</script>
